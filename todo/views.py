@@ -17,7 +17,7 @@ def add_todo(req):
     form = TodoForm(req.POST)
     print(req.POST['text'])
     if form.is_valid():
-        new_todo = Todo(text=req.POST['text'])
+        new_todo = Todo(title=req.POST['text'])
         new_todo.save()
     return redirect('index')
 
