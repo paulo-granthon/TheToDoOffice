@@ -3,17 +3,29 @@
 {{ '<' }}{{ '!DOCTYPE html>' }}
 <!--suppress XmlDuplicatedId -->
 <html lang="en">
-
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> Login - TheToDoOffice</title>
+
 <!--		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
 <!--		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
 
-		<link rel="stylesheet" href="{% static 'todo/bs/css/flatly.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'bs/css/flatly.min.css' %}" />
 		<link rel="stylesheet" href="{% static 'authentication/auth_styles.css' %}" />
 
-	</head>
+		<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("register-form-link").click(function(){
+					$("register-form").show();
+					$("login-form").hide();
+					$("register-form-link").addClass('active');
+					$("login-form-link").removeClass('active');
+				});
+			});
+		</script>
 
-	<div class="myclass">iasuhdiuahsiudhasuiodhiauhsiduhasidiauhsiudh</div>
+	</head>
 
 	<div class="container">
     	<div class="row">
@@ -22,7 +34,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Login</a>
+								<a href="#" id="login-form-link" class="active">Login</a>
 							</div>
 							<div class="col-xs-6">
 								<a href="#" id="register-form-link">Register</a>
@@ -33,13 +45,15 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
+
+								<!-- Login Form -->
+								<form id="login-form" action="{% url 'login_view'" method="post" role="form" style="display:true">
 									<div class="form-group">
 										<!--suppress XmlDuplicatedId -->
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required autofocus>
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -62,19 +76,22 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+								<!-- End Login Form -->
+
+								<!-- Register Form -->
+								<form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display:none">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required autofocus>
 									</div>
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required>
 									</div>
 									<div class="form-group">
 										<!--suppress XmlDuplicatedId -->
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -84,6 +101,8 @@
 										</div>
 									</div>
 								</form>
+								<!-- End Register Form -->
+
 							</div>
 						</div>
 					</div>

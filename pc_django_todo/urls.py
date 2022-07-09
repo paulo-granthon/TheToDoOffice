@@ -27,5 +27,12 @@ urlpatterns = [
 
 
 if settings.DEBUG:
+    s = settings.STATIC_URL
+    m = settings.MEDIA_URL
+    print('urls.py DEBUG is True, adding STATIC_URL: "' + s + '" and "' + m + '" to urls')
+    print('============================================')
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    print('urls.py DEBUG is False')
+    print('============================================')

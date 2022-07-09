@@ -7,5 +7,6 @@ def login_index(req):
 
 
 def login_page(req):
-    print('login pressed')
+    # print('login pressed')
     return login_index(req)
+
