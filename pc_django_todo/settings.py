@@ -120,14 +120,14 @@ USE_TZ = True
 
 print('BASE_DIR: ' + BASE_DIR.__str__())
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'media')
 )
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'static_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn', 'media_root')
 
 TEMP = os.path.join(BASE_DIR, 'media_cdn/temp')
 # BASE_DIR = "http://127.0.0.1:8000"
