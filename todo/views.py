@@ -9,6 +9,7 @@ def index(req):
     todo_list = Todo.objects.order_by('id')
     form = TodoForm()
     context = {'todo_list': todo_list, 'form': form}
+    print('index page loaded')
     return render(req, 'todo/index.html', context)
 
 
