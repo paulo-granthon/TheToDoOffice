@@ -1,0 +1,20 @@
+<h1>TheToDoOffice</h1>
+
+<h2>WHAT DO YOU WANT TO DO TODAY?</h2>
+
+{{ fast_form }}
+
+<table>
+    <tr>
+        <th>Tasks:</th>
+        <th>☺</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.title }}</td>
+        <td><a href="{% url 'task' task.id %}">View</a></td>
+    </tr>
+    {% empty %}
+    <h3>empty.</h3>
+    {% endfor %}
+</table>

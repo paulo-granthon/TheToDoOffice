@@ -1,40 +1,38 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
+from django.http import HttpResponse
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy  # to redirect back to the previous page after creating a task
 
-from .models import Todo
-from .forms import TodoForm
-
-
-def index(req):
-    todo_list = Todo.objects.order_by('id')
-    form = TodoForm()
-    context = {'todo_list': todo_list, 'form': form}
-    print('index page loaded')
-    return render(req, 'todo/index.html', context)
+from .models import Task
+from .forms import TaskForm, TaskFormFast
 
 
-@require_POST
-def add_todo(req):
-    form = TodoForm(req.POST)
-    print(req.POST['text'])
-    if form.is_valid():
-        new_todo = Todo(title=req.POST['text'])
-        new_todo.save()
-    return redirect('index')
+class TaskList(ListView):
+    model = Task
+    context_object_name = 'tasks'
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskList, self).get_context_data(**kwargs)
+        context['fast_form'] = TaskFormFast()
+        return context
 
 
-def complete_todo(req, todo_id):
-    todo = Todo.objects.get(pk=todo_id)
-    todo.completed = True
-    todo.save()
-    return redirect('index')
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'todo/task.html'
 
 
-def delete_completed(req):
-    Todo.objects.filter(completed__exact=True).delete()
-    return redirect('index')
+class TaskCreateFast(CreateView):
+    model = Task
+    fields = ['title']
 
 
-def delete_all(req):
-    Todo.objects.all().delete()
-    return redirect('index')
+class TaskCreate(CreateView):
+    model = Task
+    fields = '__all__'
+    success_url = reverse_lazy('tasks')
+
