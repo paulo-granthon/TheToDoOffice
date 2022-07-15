@@ -1,40 +1,76 @@
-from django.shortcuts import render, redirect
+# general app imports
+from django.shortcuts import redirect
+from django.urls import reverse_lazy  # to redirect back to the previous page after creating a task
+
+# todo app imports
 from django.views.decorators.http import require_POST
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Todo
-from .forms import TodoForm
+# todo classes imports
+from .models import Task
+from .forms import TaskForm, TaskFormFast
 
 
-def index(req):
-    todo_list = Todo.objects.order_by('id')
-    form = TodoForm()
-    context = {'todo_list': todo_list, 'form': form}
-    print('index page loaded')
-    return render(req, 'todo/index.html', context)
+class TaskList(ListView):
+    model = Task
+    context_object_name = 'tasks'
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskList, self).get_context_data(**kwargs)
+
+        # only return the current user's tasks
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(completed=False).count()
+
+        # add the fast_form as context
+        context['fast_form'] = TaskFormFast()
+
+        # search related logic
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['tasks'] = context['tasks'].filter(title__icontains=search_input)
+
+        context['search_input'] = search_input
+
+        # return the context
+        return context
+
+
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'todo/task.html'
 
 
 @require_POST
-def add_todo(req):
-    form = TodoForm(req.POST)
+def TaskCreateFast(req):
+    form = TaskFormFast(req.POST)
     print(req.POST['text'])
     if form.is_valid():
-        new_todo = Todo(title=req.POST['text'])
-        new_todo.save()
-    return redirect('index')
+        Task(user=req.user, title=req.POST['text']).save()
+    return redirect('tasks')
 
 
-def complete_todo(req, todo_id):
-    todo = Todo.objects.get(pk=todo_id)
-    todo.completed = True
-    todo.save()
-    return redirect('index')
+class TaskCreate(CreateView):
+    model = Task
+    fields = ['title', 'description']
+    success_url = reverse_lazy('tasks')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
 
 
-def delete_completed(req):
-    Todo.objects.filter(completed__exact=True).delete()
-    return redirect('index')
+class TaskUpdate(UpdateView):
+    model = Task
+    fields = ['title', 'description', 'completed']
+    success_url = reverse_lazy('tasks')
 
 
-def delete_all(req):
-    Todo.objects.all().delete()
-    return redirect('index')
+class TaskDelete(DeleteView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'todo/task_del.html'
+    success_url = reverse_lazy('tasks')
