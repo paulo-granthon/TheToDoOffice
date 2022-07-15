@@ -1,20 +1,46 @@
-<h1>TheToDoOffice</h1>
+<!--<h1>TheToDoOffice</h1>-->
+<!--<hr>-->
 
-<h2>WHAT DO YOU WANT TO DO TODAY?</h2>
+<!--login / register-->
+{% if request.user.is_authenticated %}
+    <p>Welcome back, {{request.user}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+<hr>
 
-{{ fast_form }}
+<!--with include-->
+<p>New task fast with included html snippet</p>
+{% include 'todo/new_task_fast.html' %}
+<hr>
 
+<!--create task-->
+<a href="{% url 'new' %}">Add new Task</a>
+<hr>
+
+<!--search-->
+<p>type to search:</p>
+<form method="GET">
+    <input type="text" name="search-area" value="{{ search_input }}">
+    <input type="submit" value="Search">
+</form>
+
+<!--task list-->
 <table>
     <tr>
         <th>Tasks:</th>
         <th>☺</th>
+        <th>☻</th>
     </tr>
     {% for task in tasks %}
     <tr>
         <td>{{ task.title }}</td>
         <td><a href="{% url 'task' task.id %}">View</a></td>
+        <td><a href="{% url 'edit' task.id %}">Edit</a></td>
+        <td><a href="{% url 'del' task.id %}">Delete</a></td>
     </tr>
     {% empty %}
-    <h3>empty.</h3>
+    <td>empty.</td>
     {% endfor %}
 </table>

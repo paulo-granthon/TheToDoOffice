@@ -1,0 +1,7 @@
+<h3>Type to add a task:</h3>
+<form method="POST" action="{% url 'new-task-fast' %}">
+    {% csrf_token%}
+    {{ fast_form.text }}
+    <input type="submit" value="Add">
+</form>
+<hr>
