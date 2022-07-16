@@ -1,38 +1,44 @@
-<!DOCTYPE html>
+{% load static %}
+
+{{ '<' }}{{ '!DOCTYPE html>' }}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TheToDoOffice</title>
+
+    <link rel="stylesheet" href="{% static 'base/styles.css' %}" />
+
 </head>
+
 <body>
 
-<h1>The To Do Office</h1>
-<hr>
+<!--left menu with Logo, fast task form and folders list -->
+<section class="toolbar">
 
-<!--login / register-->
-{% if request.user.is_authenticated %}
-    <p>Welcome back, {{request.user}}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'login' %}">Login</a>
-{% endif %}
-<hr>
+    <h1>The To Do Office</h1>
+    <hr>
 
-<!--with include-->
-<p>New task fast with included html snippet</p>
-{% include 'todo/new_task_fast.html' %}
-<hr>
+    {% include 'authentication/bar.html' %}
+    <hr>
 
-<!--search-->
-<p>type to search:</p>
-<form method="GET">
-    <input type="text" name="search-area" value="{{ search_input }}">
-    <input type="submit" value="Search">
-</form>
+    {% include 'todo/new_task_fast.html' %}
+    <hr>
 
-{% block content%}
+</section>
 
-{% endblock %}
+<!--content area where all the tasks are shown -->
+<section class="content-area">
+
+    {% block content%}
+
+    {% endblock %}
+
+    <div class="search-box">
+        {% include 'search.html' %}
+    </div>
+
+</section>
+
 
 </body>
 </html>

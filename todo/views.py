@@ -14,29 +14,6 @@ from .models import Task
 from .forms import TaskForm, TaskFormFast
 
 
-from django.views.generic.base import TemplateView
-from django.template import Context, Template
-
-
-class HomePage(TemplateView):
-    template_name = 'todo/base.html'
-    list_html = None
-
-    def get_context_data(self, **kwargs):
-        context = super(HomePage, self).get_context_data(**kwargs)
-        # task_list = TaskList(template_name=templates[1])
-
-        task_list_context = {}  # TaskList.get_context_data(TaskList(), **kwargs)
-        task_list_html = Template('task_list.html')
-        task_list_view = task_list_html.render(Context(task_list_context))
-
-        TaskList().request()
-
-        context['task_list'] = task_list_view
-
-        return context
-
-
 class TaskList(ListView):
     model = Task
     context_object_name = 'tasks'

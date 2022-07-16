@@ -1,0 +1,8 @@
+{% if request.user.is_authenticated %}
+    <div style="display:flex; justify-content: space-between">
+        <div>Welcome back, {{request.user}}!</div>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
