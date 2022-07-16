@@ -1,30 +1,6 @@
-<!--<h1>TheToDoOffice</h1>-->
-<!--<hr>-->
+{% extends 'todo/base.html' %}
 
-<!--login / register-->
-{% if request.user.is_authenticated %}
-    <p>Welcome back, {{request.user}}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'login' %}">Login</a>
-{% endif %}
-<hr>
-
-<!--with include-->
-<p>New task fast with included html snippet</p>
-{% include 'todo/new_task_fast.html' %}
-<hr>
-
-<!--create task-->
-<a href="{% url 'new' %}">Add new Task</a>
-<hr>
-
-<!--search-->
-<p>type to search:</p>
-<form method="GET">
-    <input type="text" name="search-area" value="{{ search_input }}">
-    <input type="submit" value="Search">
-</form>
+{% block content%}
 
 <!--task list-->
 <table>
@@ -44,3 +20,5 @@
     <td>empty.</td>
     {% endfor %}
 </table>
+
+{% endblock %}

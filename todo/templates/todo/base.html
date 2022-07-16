@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TheToDoOffice</title>
+</head>
+<body>
+
+<h1>The To Do Office</h1>
+<hr>
+
+<!--login / register-->
+{% if request.user.is_authenticated %}
+    <p>Welcome back, {{request.user}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+<hr>
+
+<!--with include-->
+<p>New task fast with included html snippet</p>
+{% include 'todo/new_task_fast.html' %}
+<hr>
+
+<!--search-->
+<p>type to search:</p>
+<form method="GET">
+    <input type="text" name="search-area" value="{{ search_input }}">
+    <input type="submit" value="Search">
+</form>
+
+{% block content%}
+
+{% endblock %}
+
+</body>
+</html>

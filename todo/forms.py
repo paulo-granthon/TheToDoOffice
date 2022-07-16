@@ -6,7 +6,7 @@ from .models import Task
 
 class TaskFormFast(forms.Form):
     model = Task
-    template_name = "todo/fast_task_form.html"
+    template_name = "todo/new_task_fast.html"
     text = forms.CharField(max_length=40, widget=forms.TextInput(
         # attrs={
         #     'class': 'form-control',

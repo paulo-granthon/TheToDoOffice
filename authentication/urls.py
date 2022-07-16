@@ -13,5 +13,5 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
 
     # old urls
-    path('login_old', views.login_index, name='login_page_old'),
+    # path('login_old', views.login_index, name='login_page_old'),
 ]

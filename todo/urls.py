@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete
+from .views import HomePage, TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete
 from .views import TaskCreateFast
 
 urlpatterns = [
 
-    # home page
+    # task list
     path('', TaskList.as_view(), name='tasks'),
 
     # url that sends a new task with title only to the database
