@@ -1,24 +1,17 @@
-{% extends 'todo/base.html' %}
-
-{% block content%}
 
 <!--task list-->
-<table>
-    <tr>
-        <th>Tasks:</th>
-        <th>☺</th>
-        <th>☻</th>
-    </tr>
+<div class="task-list">
     {% for task in tasks %}
-    <tr>
-        <td>{{ task.title }}</td>
-        <td><a href="{% url 'task' task.id %}">View</a></td>
-        <td><a href="{% url 'edit' task.id %}">Edit</a></td>
-        <td><a href="{% url 'del' task.id %}">Delete</a></td>
-    </tr>
+    <div class="task">
+        <div>{{ task.title }}</div>
+        <div><a href="{% url 'task' task.id %}">View</a></div>
+        <div><a href="{% url 'edit' task.id %}">Edit</a></div>
+        <div><a href="{% url 'del' task.id %}">Delete</a></div>
+    </div>
     {% empty %}
-    <td>empty.</td>
+    <div>empty.</div>
     {% endfor %}
-</table>
+    <div style="background: transparent; color: transparent; user-select: none; width: 70%;">.</div>
+</div>
 
-{% endblock %}
+

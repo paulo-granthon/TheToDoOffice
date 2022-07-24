@@ -1,0 +1,10 @@
+
+.success {
+    color: green;
+    transition: all ease-in 150ms;
+}
+
+.error {
+    color: red;
+    transition: all ease-in 150ms;
+}

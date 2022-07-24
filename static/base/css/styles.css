@@ -1,0 +1,107 @@
+
+body{
+    padding: 0;
+    margin: 0;
+
+}
+
+.main {
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: blue;
+
+    overflow: hidden;
+
+}
+
+/* left side */
+.toolbar {
+    min-width: 14rem;
+
+    background-color: green;
+
+    padding: 1rem;
+
+    border: 3px solid black;
+    border-radius: 16px;
+}
+
+/* right side */
+.container {
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.folder {
+
+    background: purple;
+    text-align: center;
+
+    border: 4px black solid;
+    border-radius: 16px;
+
+}
+
+.content-area {
+    height: 100%;
+    width: 100%;
+
+    background-color: grey;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+/* tasks */
+.task-list {
+
+    height: 75vh;
+
+    padding-top: 2em;
+
+    display: flex;
+    flex-flow: column wrap;
+
+    align-content: flex-start;
+    align-items: start;
+}
+
+.task {
+    min-width: 12em;
+    height: 2em;
+
+    padding: .25em;
+    margin: .5em 4em;
+
+    align-items: center;
+
+    display: flex;
+    justify-content: space-between;
+
+    background-color: white;
+
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.search-box {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

@@ -1,0 +1,23 @@
+{% load static %}
+
+{{ '<' }}{{ '!DOCTYPE html>' }}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login/Register</title>
+
+    <!-- HTMX -->
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'authentication/css/styles.css' %}" />
+
+</head>
+<body>
+
+{% block content %}
+
+{% endblock content %}
+
+</body>
+</html>

@@ -31,8 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    # my apps
     'todo',
     'authentication',
+
+    # HTMX
+    'django_htmx',
+    'widget_tweaks',
+
+    # bootstrap
+    "bootstrap5",
+
+    # django defaults
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +53,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
+    'django_htmx.middleware.HtmxMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,7 +129,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (css, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'

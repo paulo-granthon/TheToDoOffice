@@ -6,6 +6,7 @@ from django.urls import reverse
 class Task(models.Model):
 
     # fields
+    # user = models.ManyToOneRel(User, related_name='tasks')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=40)
     description = models.TextField(null=True, blank=True)

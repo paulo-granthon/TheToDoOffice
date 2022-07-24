@@ -9,6 +9,10 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+# HTMX imports
+from django.contrib.auth import get_user_model
+from django.http import HttpResponse
+
 
 class CustomLoginView(LoginView):
     template_name = "authentication/login.html"
@@ -16,14 +20,14 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('index')
+        return reverse_lazy('tasks')
 
 
 class RegisterView(FormView):
     template_name = "authentication/register.html"
     form_class = UserCreationForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
         user = form.save()
@@ -33,6 +37,13 @@ class RegisterView(FormView):
 
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('index')
+            return redirect('tasks')
         return super(RegisterView, self).get(*args, **kwargs)
 
+
+def check_username(req):
+    username = req.POST.get('username')
+    if get_user_model().objects.filter(username=username).exists():
+        return HttpResponse("<div id='username-error' class='error'>This username already exists</div>")
+    else:
+        return HttpResponse("<div id='username-error' class='success'>This username is available</div>")

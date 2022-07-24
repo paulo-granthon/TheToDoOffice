@@ -1,0 +1,69 @@
+{% load static %}
+
+{{ '<' }}{{ '!DOCTYPE html>' }}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TheToDoOffice</title>
+
+    <!-- HTMX -->
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'base/css/styles.css' %}" />
+
+</head>
+<body>
+
+<div class="main">
+
+    <!--left menu with Logo, fast task form and folders list -->
+    <div class="toolbar">
+
+        <h1>To Do Office</h1>
+        <hr>
+
+        {% include 'authentication/bar.html' %}
+        <hr>
+
+        {% include 'todo/new_task_fast.html' %}
+        <hr>
+
+    </div>
+
+    <div class="container">
+
+        <div class="folder"><h1 style="background:white;">Nome da pasta</h1></div>
+
+        <!--content area where all the tasks are shown -->
+        <div class="content-area" id="x-scroll">
+
+            <div id="task-list">
+                {% include 'todo/task_list.html' %}
+            </div>
+
+        </div>
+
+        <div class="search-box">
+            {% include 'search.html' %}
+        </div>
+
+    </div>
+</div>
+
+<script>
+const container = document.getElementById("x-scroll");
+container.addEventListener("wheel", function (e) {
+    if (e.deltaY > 0) {
+        container.scrollLeft += 100;
+        e.preventDefault();
+    }
+    else {
+        container.scrollLeft -= 100;
+        e.preventDefault();
+    }
+});
+</script>
+
+</body>
+</html>
