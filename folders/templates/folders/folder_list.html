@@ -1,0 +1,51 @@
+{% extends 'folders/base.html' %}
+
+{% block content %}
+
+<h3>Folders</h3>
+
+<ul class="folder-list">
+
+<!--    { if current_folder is None %}-->
+
+<!--    <div class="folder-list-item selected">-->
+<!--        <div>Todas</div>-->
+<!--    </div>-->
+
+<!--    { else %}-->
+
+    <div class="folder-list-item"
+         hx-get="{% url 'all' %}"
+         hx-target="#content-area"
+         _="on htmx:afterSwap x_scroll_apply()"
+    >
+        <div>Todas</div>
+    </div>
+
+<!--    { endif %}-->
+
+    {% for folder in folders %}
+
+<!--        {% if current_folder is folder %}-->
+
+<!--            <div class="folder-list-item selected">-->
+<!--                {{ folder.name }}-->
+<!--            </div>-->
+
+<!--        {% else %}-->
+
+            <div class="folder-list-item"
+                 hx-get="{% url 'open' folder.id %}"
+                 hx-target="#content-area"
+                 _="on htmx:afterSwap x_scroll_apply() console.log('asyugdasgdiausgduyasgu')"
+            >
+                {{ folder.name }}
+            </div>
+
+<!--        {% endif %}-->
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

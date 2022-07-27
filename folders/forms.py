@@ -1,8 +1,8 @@
 from django import forms
-from .models import Task
+from .models import Folder
 
 
 class TaskFormFast(forms.Form):
-    model = Task
-    template_name = "todo/new_task_fast.html"
+    model = Folder
+    template_name = "folders/new-folder.html"
     text = forms.CharField(max_length=40)

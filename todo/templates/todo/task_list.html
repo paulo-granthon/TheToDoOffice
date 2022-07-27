@@ -1,17 +1,31 @@
+<div class="content-area" id="content-area">
 
-<!--task list-->
-<div class="task-list">
-    {% for task in tasks %}
-    <div class="task">
-        <div>{{ task.title }}</div>
-        <div><a href="{% url 'task' task.id %}">View</a></div>
-        <div><a href="{% url 'edit' task.id %}">Edit</a></div>
-        <div><a href="{% url 'del' task.id %}">Delete</a></div>
+    <!-- folder name -->
+    <div class="folder-name-container">
+        <h1 class="folder-name-text">
+        {% if current_folder %}
+            {{ current_folder.name }}
+        {% else %}
+            Todas
+        {% endif %}
+        </h1>
     </div>
-    {% empty %}
-    <div>empty.</div>
-    {% endfor %}
-    <div style="background: transparent; color: transparent; user-select: none; width: 70%;">.</div>
-</div>
 
+    <div id="tasks-container">
+        <!--task list-->
+        <div class="task-list" id="task-list">
+            {% for task in tasks %}
+            <div class="task">
+                <div>{{ task.title }}</div>
+                <div><a href="{% url 'task' task.id %}">View</a></div>
+                <div><a href="{% url 'edit' task.id %}">Edit</a></div>
+                <div><a href="{% url 'del' task.id %}">Delete</a></div>
+            </div>
+            {% empty %}
+            <div style="padding-left:4em">empty...</div>
+            {% endfor %}
+            <div style="background: transparent; color: transparent; user-select: none; width: 70%;">.</div>
+        </div>
+    </div>
+</div>
 

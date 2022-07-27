@@ -7,12 +7,6 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('tasks/', views.TaskList.as_view(), name='tasks'),
 
-    # url that sends a new task with title only to the database
-    # path('new-task-fast/', TaskCreateFast, name='new-task-fast'),
-
-    # creates a view to add a new task with title and description
-    path('new/', views.TaskCreate.as_view(), name='new'),
-
     # c(RUD) - request, update and delete views
     path('task/<int:pk>/', views.TaskDetail.as_view(), name='task'),
     path('edit/<int:pk>/', views.TaskUpdate.as_view(), name='edit'),

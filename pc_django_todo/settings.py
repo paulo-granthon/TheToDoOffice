@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # my apps
     'todo',
     'authentication',
+    'folders',
 
     # HTMX
     'django_htmx',

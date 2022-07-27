@@ -1,0 +1,8 @@
+.folder-list-item {
+    display: flex;
+    border: 3px black solid;
+}
+
+.selected {
+    border: 5px blue solid;
+}
