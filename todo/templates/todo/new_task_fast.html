@@ -7,7 +7,6 @@
         hx-post="{% url 'new-task-fast' %}"
         hx-target="#content-area"
         _="on htmx:afterRequest reset() me"
-        _="on htmx:afterSwap x_scroll_apply()"
 >
     {% csrf_token%}
     <input type="text" name="title" placeholder="Type to add a new task"/>

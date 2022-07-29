@@ -17,7 +17,7 @@
     <div class="folder-list-item"
          hx-get="{% url 'all' %}"
          hx-target="#content-area"
-         _="on htmx:afterSwap x_scroll_apply()"
+         _="on htmx:afterRequest x_scroll_apply()"
     >
         <div>Todas</div>
     </div>
@@ -37,7 +37,7 @@
             <div class="folder-list-item"
                  hx-get="{% url 'open' folder.id %}"
                  hx-target="#content-area"
-                 _="on htmx:afterSwap x_scroll_apply() console.log('asyugdasgdiausgduyasgu')"
+                 _="on htmx:afterRequest x_scroll_apply()"
             >
                 {{ folder.name }}
             </div>

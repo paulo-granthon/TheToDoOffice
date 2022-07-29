@@ -39,7 +39,9 @@
     <div class="container">
 
         <!--content area where all the tasks are shown -->
-        {% include 'todo/task_list.html' %}
+        <div id="tasks-wrapper">
+            {% include 'todo/task_list.html' %}
+        </div>
 
         <div class="search-box">
             {% include 'search.html' %}
