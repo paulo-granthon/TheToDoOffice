@@ -125,6 +125,22 @@ body{
     border-radius: 8px;
 }
 
+.list-item-del {
+
+    cursor: pointer;
+
+    display: none;
+
+    background: red;
+    width: 1.25em;
+
+    border-radius: .25em;
+}
+
+.task:hover > .list-item-del {
+    display: unset;
+}
+
 .search-box {
     display: none;
     position: absolute;

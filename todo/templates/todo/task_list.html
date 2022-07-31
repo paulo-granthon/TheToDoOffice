@@ -1,4 +1,12 @@
-<div class="content-area" id="content-area">
+<div
+    class="content-area"
+    id="content-area"
+    hx-get="{% url 'folders' %}"
+    hx-trigger="load"
+    hx-target="#folders-wrapper"
+    hx-swap="outerHTML"
+    _="on htmx:afterRequest log 'folder-list updated!'"
+>
 
     <!-- folder name -->
     <div class="folder-name-container">
@@ -15,12 +23,7 @@
         <!--task list-->
         <div class="task-list" id="task-list">
             {% for task in tasks %}
-            <div class="task">
-                <div>{{ task.title }}</div>
-                <div><a href="{% url 'task' task.id %}">View</a></div>
-                <div><a href="{% url 'edit' task.id %}">Edit</a></div>
-                <div><a href="{% url 'del' task.id %}">Delete</a></div>
-            </div>
+                {% include 'todo/task-list-item.html' with task=task %}
             {% empty %}
             <div style="padding-left:4em">empty...</div>
             {% endfor %}

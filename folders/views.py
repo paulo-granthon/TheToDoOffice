@@ -4,6 +4,11 @@ from todo.views import Task, get_context
 from .models import Folder
 
 
+def folders(req):
+
+    return render(req, 'folders/folder_list.html', get_context(req, {}))
+
+
 def f_all(req):
     print("open folder| all")
     req.session['current_folder'] = -1
@@ -38,8 +43,8 @@ def f_open(req, pk=-1):
 def add(req):
     name = req.POST.get('name')
     folder = Folder.objects.create(user=req.user, name=name)
-    folders = Folder.objects.filter(user=req.user)
-    return render(req, 'folders/folder_list.html', {'folders': folders})
+    f = Folder.objects.filter(user=req.user)
+    return render(req, 'folders/folder_list.html', {'folders': f})
 
 #
 # def edit(req):
@@ -48,8 +53,13 @@ def add(req):
 #     success_url = reverse_lazy('index')
 #
 #
-# def delete(req):
-#     model = Folder
-#     context_object_name = 'task'
-#     template_name = 'todo/task_del.html'
-#     success_url = reverse_lazy('index')
+
+
+def f_del(req, pk):
+    for i in range(10):
+        print(pk)
+    folder = Folder.objects.get(pk=pk)
+    for i in range(10):
+        print(folder)
+    req.user.folders.remove(folder)
+    return folders

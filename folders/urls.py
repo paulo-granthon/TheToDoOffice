@@ -13,8 +13,13 @@ urlpatterns = [
 ]
 
 htmx_urlpatterns = [
+
+    path('folders', views.folders, name="folders"),
+
     path('all/', views.f_all, name="all"),
-    path('open/<int:pk>/', views.f_open, name="open")
+    path('open/<int:pk>/', views.f_open, name="open"),
+
+    path('f_del/<int:pk>/', views.f_del, name="f_del")
 ]
 
 urlpatterns += htmx_urlpatterns

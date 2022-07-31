@@ -1,0 +1,42 @@
+{% if folder is None %}
+
+    {% if selected is True %}
+
+    <div class="folder-list-item selected">
+
+    {% else %}
+
+    <div class="folder-list-item"
+         hx-get="{% url 'open' 0 %}"
+         hx-target="#content-area"
+         _="on htmx:afterRequest x_scroll_apply()"
+    >
+    {% endif %}
+
+        Todas
+
+{% else %}
+
+    {% if selected is True %}
+
+    <div class="folder-list-item selected">
+
+    {% else %}
+
+    <div class="folder-list-item"
+         hx-get="{% url 'open' folder.pk %}"
+         hx-target="#content-area"
+         _="on htmx:afterRequest x_scroll_apply()"
+    >
+    {% endif %}
+
+        {{ folder.name }}
+
+        {% include 'delete.html' with del_url="f_del" item_id=folder.pk target="#folders-wrapper" item="folder" text="" %}
+
+
+{% endif %}
+
+</div>
+
+{% if False %}</div></div></div>{% endif %}

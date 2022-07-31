@@ -2,7 +2,6 @@
 window.onload = x_scroll_apply;
 
 function x_scroll_apply() {
-"tasks-wrapper"
     const container = document.getElementById("task-list");
     container.addEventListener("wheel", function (e) {
         if (e.deltaY > 0) {
@@ -17,3 +16,7 @@ function x_scroll_apply() {
     console.log("scroll added to element")
 }
 
+function refresh_folders () {
+
+
+}

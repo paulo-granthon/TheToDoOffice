@@ -1,8 +1,62 @@
-.folder-list-item {
+
+.folders-header {
+
+background: purple;
+
+    height: 1.25em;
+    padding: .25em .25em;
+
     display: flex;
-    border: 3px black solid;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.new-folder {
+
+    cursor: pointer;
+
+    width: 2em;
+    border-radius: .375em;
+
+}
+
+.folder-list {
+
+background: pink;
+
+    margin: 0;
+    padding: .25em 0 .25em .5em;
+}
+
+.folder-list-item {
+
+    cursor: pointer;
+
+    margin: .25em .125em .25em .25em;
+    padding: .125em .25em;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-radius: .25em;
+
 }
 
 .selected {
-    border: 5px blue solid;
+
+    cursor: unset;
+
+    outline: 5px blue solid;
+}
+
+.folder-list-item:hover {
+
+    background: grey;
+    box-shadow: black 1px 1px 1px 1px;
+
+}
+
+.folder-list-item:hover > .list-item-del {
+    display: unset;
 }

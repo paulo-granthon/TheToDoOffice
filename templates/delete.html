@@ -1,0 +1,10 @@
+<div class="list-item-del"
+     hx-delete="{% url del_url item_id %}"
+     hx-target="{{ target }}"
+     _="on click call
+     Swal.fire({title: 'Confirm', text:'Are you sure you want to delete this {{ item }}?'})
+     if result.isConfirmed trigger confirmed"
+>
+    {{ text }}
+
+</div>

@@ -58,6 +58,9 @@ def get_context(request, context):
     if search_input:
         context['tasks'] = context['tasks'].filter(title__icontains=search_input)
 
+    print(context['current_folder'])
+    print(folder)
+
     # update the search input context
     context['search_input'] = search_input
 

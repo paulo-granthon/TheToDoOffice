@@ -1,0 +1,6 @@
+<div class="task">
+    <div>{{ task.title }}</div>
+<!--    <div><a href="{ url 'task' task.id %}">View</a></div>-->
+<!--    <div><a href="{ url 'edit' task.id %}">Edit</a></div>-->
+    {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" text="X" %}
+</div>
