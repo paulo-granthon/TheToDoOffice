@@ -7,7 +7,7 @@
     {% else %}
 
     <div class="folder-list-item"
-         hx-get="{% url 'open' 0 %}"
+         hx-get="{% url 'all' %}"
          hx-target="#content-area"
          _="on htmx:afterRequest x_scroll_apply()"
     >
@@ -30,9 +30,9 @@
     >
     {% endif %}
 
-        {{ folder.name }}
+        {{ folder.name }} {{ folder.pk }}
 
-        {% include 'delete.html' with del_url="f_del" item_id=folder.pk target="#folders-wrapper" item="folder" text="" %}
+        {% include 'delete.html' with del_url="f_del" item_id=folder.pk target="#tasks-wrapper" item="folder" text="" %}
 
 
 {% endif %}

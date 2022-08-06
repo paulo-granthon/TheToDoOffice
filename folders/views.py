@@ -17,26 +17,36 @@ def f_all(req):
 
 
 def f_open(req, pk=-1):
-    pk = pk-1
     tasks = Task.objects.filter(user=req.user)
-
-    folder = None
 
     if pk < 0:
         return f_all(req)
 
-    else:
-        print("open folder | pk: " + str(pk))
-        folder = Folder.objects.all()[pk]
-        print("open folder | name: " + folder.name)
-
+    try:
+        folder = Folder.objects.get(pk=pk)
         req.session['current_folder'] = pk
 
         # filter tasks to only include from the selected folder
         tasks = tasks.filter(folder=folder)
 
-    print(folder.name)
+    except Folder.DoesNotExist:
+        return f_all(req)
 
+    print("open folder | name: " + folder.name)
+
+    return render(req, 'todo/task_list.html', get_context(req, {'tasks': tasks}))
+
+
+def f_reload(req):
+    if 'current_folder' not in req.session or req.session['current_folder'] > 0:
+        return f_all(req)
+
+    try:
+        folder = Folder.objects.get(pk=req.session['current_folder'])
+    except Folder.DoesNotExist:
+        return f_all(req)
+
+    tasks = Task.objects.filter(user=req.user).filter(folder=folder)
     return render(req, 'todo/task_list.html', get_context(req, {'tasks': tasks}))
 
 
@@ -56,10 +66,9 @@ def add(req):
 
 
 def f_del(req, pk):
-    for i in range(10):
-        print(pk)
-    folder = Folder.objects.get(pk=pk)
-    for i in range(10):
-        print(folder)
-    req.user.folders.remove(folder)
-    return folders
+    Folder.objects.filter(pk=pk).delete()
+    if 'current_folder' not in req.session or pk is req.session['current_folder']:
+        return f_all(req)
+    else:
+        return f_reload(req)
+

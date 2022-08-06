@@ -28,29 +28,38 @@ class Index(TemplateView):
 def get_context(request, context):
 
     # if context already contains 'tasks', update the list
-    if context.__contains__('tasks'):
-        context['tasks'] = context['tasks'].filter(user=request.user)
     # otherwise, create the list
+    if 'tasks' in context:
+        context['tasks'] = context['tasks'].filter(user=request.user)
     else:
         context.update({'tasks': Task.objects.filter(user=request.user)})
 
     # get the user's folders
     context.update({'folders': Folder.objects.filter(user=request.user)})
 
-    # get the current folder from session
+    # initialize folder variable
     folder = None
-    session_folder = request.session['current_folder']
-    if session_folder != -1:
-        folder = Folder.objects.all()[session_folder]
 
-    # set the folder object to context
+    # if session contains a folder pk, get the folder object as 'folder'
+    # otherwise, there is no current folder, just leave 'folder' as None
+    if 'current_folder' in request.session:
+        session_folder = request.session['current_folder']
+        try:
+            folder = Folder.objects.all().get(pk=session_folder)
+        except Folder.DoesNotExist:
+            folder = None
+            request.session['current_folder'] = -1
+
+    # if there's a current folder parameter in context, set its value
+    # otherwise, add the parameter to context and set its value
     if 'current_folder' in context:
         context['current_folder'] = folder
     else:
         context.update({'current_folder': folder})
 
-    if context['current_folder'] is not None:
-        context['tasks'] = context['tasks'].filter(folder=context['current_folder'])
+    # finally, if the folder is not None, set 'tasks' in the context as the folder's tasks only
+    if folder is not None:
+        context['tasks'] = context['tasks'].filter(folder=folder)
 
     # get the search input if any
     search_input = request.GET.get('search-area') or ''
