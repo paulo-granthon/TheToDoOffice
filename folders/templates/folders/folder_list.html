@@ -3,9 +3,14 @@
 <div id="folders-wrapper">
     <div class="folders-header">
         <h3>Folders</h3>
-        <button class="new-folder">+</button>
+        <button class="new-folder"
+                hx-get="{% url 'new_folder_modal' %}"
+                hx-target="#modal-wrapper"
+                hx-swap="outerHTML"
+        >
+        +
+        </button>
     </div>
-    {% include 'folders/new-folder.html' %}
     <ul class="folder-list">
         {% if current_folder is None %}
             {% include 'folders/folder-list-item.html' with selected=True %}

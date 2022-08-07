@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +26,14 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('', include('folders.urls'))
 ]
+
+htmx_urlpatterns = [
+
+    path('close_modal', views.close_modal, name="close_modal"),
+
+]
+
+urlpatterns += htmx_urlpatterns
 
 
 if settings.DEBUG:

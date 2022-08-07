@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'modal.html' %}
 
-</body>
-</html>
+{% block content %}
+<div id="modal-wrapper" class="modal-wrapper">
+
+    <div id="new-folder-modal" class="new-folder-modal">
+
+        <h3>Nova Pasta</h3>
+
+        <form   style="justify-content: space-between;"
+                hx-post="{% url 'new_folder' %}"
+                hx-target="#content-area"
+                _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+        >
+            <input type="text" name="folder_name" id="folder_name" placeholder="nome">
+
+            <hr>
+
+            <button class="close-modal"
+                    type="button"
+                    hx-get="{% url 'close_modal' %}"
+                    hx-target="#modal-wrapper"
+                    hx-swap="outerHTML"
+            >
+            cancel
+            </button>
+
+            <button type="submit">ok</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

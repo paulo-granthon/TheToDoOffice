@@ -97,7 +97,10 @@ class TaskDetail(DetailView):
 def TaskCreateFast(req):
     folder = None
     if 'current_folder' in req.session and req.session['current_folder'] >= 0:
-        folder = Folder.objects.all()[req.session['current_folder']]
+        try:
+            folder = Folder.objects.get(pk=req.session['current_folder'])
+        except Folder.DoesNotExist:
+            pass
         print("new task in folder: " + folder.name)
     else:
         print("new uncategorized task")

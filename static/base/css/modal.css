@@ -1,0 +1,51 @@
+hr {
+    opacity: 0;
+}
+
+.modal-wrapper {
+
+    position:fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+
+    background: rgba(100, 150, 200, .5);
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.modal-wrapper.inactive {
+    display: none;
+}
+
+.modal-wrapper > div {
+
+}
+
+.modal-header {
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+.close-modal {
+
+}
+
+.new-folder-modal {
+
+    border: 3px solid black;
+
+    background: white;
+
+    padding: .25em;
+
+}
