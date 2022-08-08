@@ -1,13 +1,11 @@
 # general app imports
 from django.views.generic import TemplateView
-from django.shortcuts import redirect, render
-from django.urls import reverse_lazy, reverse  # to redirect back to the previous page after creating a task
+from django.shortcuts import render
+from django.urls import reverse_lazy
 
 # todo app imports
-from django.views.decorators.http import require_POST
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView
 
 # todo classes imports
 from .models import Task
@@ -79,13 +77,8 @@ def get_context(request, context):
     return context
 
 
-class TaskList(ListView):
-    model = Task
-    context_object_name = 'tasks'
-
-    def get_context_data(self, **kwargs):
-        context = super(TaskList, self).get_context_data(**kwargs)
-        return get_context(self.request, context)
+def tasks(req):
+    return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
 class TaskDetail(DetailView):
@@ -94,19 +87,18 @@ class TaskDetail(DetailView):
     template_name = 'todo/task.html'
 
 
-def TaskCreateFast(req):
+def t_new(req):
     folder = None
     if 'current_folder' in req.session and req.session['current_folder'] >= 0:
         try:
             folder = Folder.objects.get(pk=req.session['current_folder'])
         except Folder.DoesNotExist:
             pass
-        print("new task in folder: " + folder.name)
+        print("new task in folder: " + folder.folder_name)
     else:
         print("new uncategorized task")
     Task.objects.create(user=req.user, title=req.POST.get('title'), folder=folder)
-    tasks = Task.objects.filter(user=req.user)
-    return render(req, 'todo/task_list.html', get_context(req, {'tasks': tasks}))
+    return render(req, 'todo/task_list.html', get_context(req, {'tasks': Task.objects.filter(user=req.user)}))
 
 
 class TaskUpdate(UpdateView):
@@ -115,8 +107,6 @@ class TaskUpdate(UpdateView):
     success_url = reverse_lazy('index')
 
 
-class TaskDelete(DeleteView):
-    model = Task
-    context_object_name = 'task'
-    template_name = 'todo/task_del.html'
-    success_url = reverse_lazy('index')
+def t_del(req, pk):
+    Task.objects.get(pk=pk).delete()
+    return tasks(req)
