@@ -1,6 +1,20 @@
-<div class="task">
+
+
+<div class="task" id="#task">
+    <div id="#task_select_{{ task.pk }}"
+         style="display: none;"
+         hx-get="{% url 'sel' task.pk %}"
+         hx-trigger="task_{{task.pk}} "
+         _="on htmx:afterRequest toggle .selected log 'single_sel | task {{ task.pk }} selected'"
+></div>
+    <div id="#task_select_{{ task.pk }}"
+         style="display: none;"
+         hx-get="{% url 'sel_multi' task.pk %}"
+         hx-trigger="task_{{task.pk}}_multi"
+         _="on htmx:afterRequest toggle .selected log 'multi_sel | task {{ task.pk }} selected'"
+></div>
     <div>{{ task.title }}</div>
 <!--    <div><a href="{ url 'task' task.id %}">View</a></div>-->
 <!--    <div><a href="{ url 'edit' task.id %}">Edit</a></div>-->
-    {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" text="X" %}
+    {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" btn_text="X" %}
 </div>

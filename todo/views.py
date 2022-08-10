@@ -1,4 +1,5 @@
 # general app imports
+from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -110,3 +111,55 @@ class TaskUpdate(UpdateView):
 def t_del(req, pk):
     Task.objects.get(pk=pk).delete()
     return tasks(req)
+
+
+def t_sel(req, pk):
+
+    # try to get task from pk
+    try:
+        sel_task = Task.objects.get(pk=pk)
+
+    # no task found
+    except Task.DoesNotExist:
+        return HttpResponse(status=404)
+
+    # initialize session 'sel_tasks' with sel_task if list is not in session yet
+    if 'sel_tasks' not in req.session or sel_task not in req.session['sel_tasks']:
+        req.session['sel_tasks'] = {sel_task}
+        return HttpResponse(status=204)
+
+    req.session['sel_tasks'] = {}
+
+    return HttpResponse(status=204)
+
+
+def t_sel_multi(req, pk):
+
+    # try to get task from pk
+    try:
+        sel_task = Task.objects.get(pk=pk)
+
+    # no task found
+    except Task.DoesNotExist:
+        return HttpResponse(status=404)
+
+    # initialize session 'sel_tasks' with sel_task if list is not in session yet
+    if 'sel_tasks' not in req.session:
+        req.session['sel_tasks'] = {sel_task}
+        return HttpResponse(status=204)
+
+    # reference the list locally
+    session_tasks = req.session['sel_tasks']
+
+    # select sel_task if not selected yet
+    if sel_task not in session_tasks:
+        session_tasks.update(sel_task)
+
+    # otherwise, deselect it
+    else:
+        session_tasks.remove(sel_task)
+
+    # replace the list
+    req.session['sel_tasks'] = session_tasks
+
+    return HttpResponse(status=204)

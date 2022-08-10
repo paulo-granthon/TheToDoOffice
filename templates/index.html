@@ -7,7 +7,7 @@
     <title>TheToDoOffice</title>
 
     <!-- HTMX -->
-    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
 
     <!-- Sweet Alert for custom confirmation UI when deleting items from lists -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -58,6 +58,24 @@
         document.body.addEventListener('htmx:configRequest', (event) => {
             event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
         });
+    </script>
+
+    <script>
+window.addEventListener("DOMContentLoaded", (e) => {
+    $('select').on('select2:select', function (e) {
+        $(this).closest('select').get(0).dispatchEvent(new Event('change'));
+    });
+});
+        function select_task(event) {
+            string e;
+            if (event.ctrlkey) {
+                e = 'multi select event'
+            }
+            else {
+                e = 'single select event'
+            }
+            dispatchEvent(new Event(e));
+        }
     </script>
 
 </div>
