@@ -3,15 +3,15 @@
 <div class="task" id="{{ task.pk }}">
     <div id="#select_{{ task.pk }}"
          style="display: none;"
-         hx-get="{% url 'sel' task.pk %}"
+         hx-post="{% url 'sel' task.pk %}"
          hx-trigger="task_select"
-         _="on htmx:afterRequest toggle .selected log 'single_sel | task {{ task.pk }} selected'"
+         _="on htmx:afterRequest remove .selected from .task then add .selected to closest .task log 'single_sel | task {{ task.pk }} selected'"
 ></div>
     <div id="#select_multi_{{ task.pk }}"
          style="display: none;"
-         hx-get="{% url 'sel_multi' task.pk %}"
+         hx-post="{% url 'sel_multi' task.pk %}"
          hx-trigger="task_select_multi"
-         _="on htmx:afterRequest toggle .selected log 'multi_sel | task {{ task.pk }} selected'"
+         _="on htmx:afterRequest toggle .selected on closest .task log 'multi_sel | task {{ task.pk }} selected'"
 ></div>
     <div style="background: purple;">{{ task.title }}</div>
 <!--    <div><a href="{ url 'task' task.id %}">View</a></div>-->
