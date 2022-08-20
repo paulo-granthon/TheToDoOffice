@@ -124,13 +124,13 @@ def t_sel(req, pk):
         return HttpResponse(status=404)
 
     # initialize session 'sel_tasks' with sel_task if list is not in session yet
-    if 'sel_tasks' not in req.session or sel_task not in req.session['sel_tasks']:
-        req.session['sel_tasks'] = {sel_task}
-        return HttpResponse(status=204)
+    if 'sel_tasks' not in req.session or pk not in req.session['sel_tasks']:
+        req.session['sel_tasks'] = list({pk})
+        return HttpResponse(status=201)
 
-    req.session['sel_tasks'] = {}
+    req.session['sel_tasks'] = list()
 
-    return HttpResponse(status=204)
+    return HttpResponse(status=201)
 
 
 def t_sel_multi(req, pk):
@@ -145,19 +145,19 @@ def t_sel_multi(req, pk):
 
     # initialize session 'sel_tasks' with sel_task if list is not in session yet
     if 'sel_tasks' not in req.session:
-        req.session['sel_tasks'] = {sel_task}
-        return HttpResponse(status=204)
+        req.session['sel_tasks'] = list({pk})
+        return HttpResponse(status=201)
 
     # reference the list locally
     session_tasks = req.session['sel_tasks']
 
     # select sel_task if not selected yet
-    if sel_task not in session_tasks:
-        session_tasks.update(sel_task)
+    if pk not in session_tasks:
+        session_tasks.append(pk)
 
     # otherwise, deselect it
     else:
-        session_tasks.remove(sel_task)
+        session_tasks.remove(pk)
 
     # replace the list
     req.session['sel_tasks'] = list(session_tasks)
@@ -165,4 +165,4 @@ def t_sel_multi(req, pk):
     for task in session_tasks:
         print(task)
 
-    return HttpResponse(status=204)
+    return HttpResponse(status=201)
