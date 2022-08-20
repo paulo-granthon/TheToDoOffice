@@ -160,6 +160,9 @@ def t_sel_multi(req, pk):
         session_tasks.remove(sel_task)
 
     # replace the list
-    req.session['sel_tasks'] = session_tasks
+    req.session['sel_tasks'] = list(session_tasks)
+
+    for task in session_tasks:
+        print(task)
 
     return HttpResponse(status=204)
