@@ -26,7 +26,13 @@ background: purple;
 background: pink;
 
     margin: 0;
-    padding: .25em 0 .25em .5em;
+    padding: .25em .25em .25em .5em;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: stretch;
+    flex-direction: column;
 }
 
 .folder-list-item {
