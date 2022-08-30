@@ -1,7 +1,7 @@
 
 .folders-header {
 
-background: purple;
+background: rgb(140, 140, 155);
 
     height: 1.25em;
     padding: .25em .25em;
@@ -23,7 +23,7 @@ background: purple;
 
 .folder-list {
 
-background: pink;
+background: rgb(109, 94, 96);
 
     margin: 0;
     padding: .25em .25em .25em .5em;
@@ -52,6 +52,7 @@ background: pink;
 .selected {
 
     cursor: unset;
+    background: whitesmoke;
 
     outline: 5px blue solid;
 }

@@ -10,23 +10,24 @@
 
     <!-- folder name -->
     <div class="folder-name-container">
-        <h1 class="folder-name-text">
-        {% if current_folder %}
-            {{ current_folder.folder_name }}
-        {% else %}
-            Todas
-        {% endif %}
-        </h1>
-
-        <div class="sel-tools">
-            <div>x</div>
-            <div>y</div>
-            <div>z</div>
+        <div><h1 class="folder-name-text"></h1></div>
+        <div>
+            <h1 class="folder-name-text">
+            {% if current_folder %}
+                {{ current_folder.folder_name }}
+            {% else %}
+                Todas
+            {% endif %}
+            </h1>
+            <div class="sel-tools">
+                <div>x</div>
+                <div>y</div>
+                <div>z</div>
+            </div>
         </div>
-    
     </div>
 
-    <div id="tasks-container">
+    <div id="tasks-container" class="tasks-container">
         <!--task list-->
         <div class="task-list" id="task-list">
             {% for task in tasks %}
