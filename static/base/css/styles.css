@@ -17,7 +17,7 @@ body{
     display: flex;
     flex-direction: row;
 
-    background-color: blue;
+    background-color: cadetblue;
 
     /* overflow: hidden; */
 
@@ -49,10 +49,12 @@ body{
 
     justify-content: flex-start;
 
+    overflow: hidden;
+
 }
 
 .content-area {
-    background: red;
+    background: transparent;
 
 }
 
@@ -64,8 +66,10 @@ body{
 
     background: purple;
 
+    position: relative;
+    top: -1em;
 
-    border: 4px black solid;
+    border: 4px darkorchid solid;
     border-radius: 16px;
 
     display: flex;
@@ -79,11 +83,38 @@ body{
 
     z-index: inherit;
 
-    background: white;
-    text-align: center;
-    max-height: 1em;
+    background: rgba(255, 255, 255, 0.463);
 
-    overflow: hidden;
+    text-align: center;
+
+    max-height: 1em;
+    min-width: 60%;
+    
+    padding: 0;
+    margin: 0 1em;
+
+    overflow: visible;
+    white-space: nowrap;
+}
+
+.sel-tools {
+    margin: 0 2em;
+    padding: 0 2em;
+
+    position: relative;
+    top: .25em;
+
+    background: white;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sel-tools > div {
+    background: red;
+    margin: .25em;
+    min-width: 1em;
+    text-align: center;
 }
 
 /* tasks */
@@ -104,7 +135,7 @@ body{
     right: .25rem;
     bottom: 0;
 
-    padding: 3rem 0 0 0;
+    padding: 3rem 0 2rem 0;
 
     overflow-x: scroll;
 
