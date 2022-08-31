@@ -134,11 +134,13 @@ def t_sel(req, pk):
         return HttpResponse(status=404)
 
     # initialize session 'sel_tasks' with sel_task if list is not in session yet
-    if 'sel_tasks' not in req.session or pk not in req.session['sel_tasks']:
+    if 'sel_tasks' not in req.session or pk not in list(req.session['sel_tasks']):
         req.session['sel_tasks'] = list({pk})
+        print(f"task {pk} selected")
         return HttpResponse(status=201)
 
-    req.session['sel_tasks'] = list()
+    print(f"task {pk} deselected")
+    req.session['sel_tasks'] = list({})
 
     return HttpResponse(status=201)
 

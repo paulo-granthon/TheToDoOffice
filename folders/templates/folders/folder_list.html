@@ -3,12 +3,14 @@
 <div id="folders-wrapper">
     <div class="folders-header">
         <h3>Folders</h3>
-        <button class="new-folder"
+        <button class="new-folder-btn"
                 hx-get="{% url 'new_folder_modal' %}"
                 hx-target="#modal-wrapper"
                 hx-swap="outerHTML"
         >
-        +
+            <span class="material-symbols-outlined">
+                create_new_folder
+            </span>
         </button>
     </div>
     <ul class="folder-list">

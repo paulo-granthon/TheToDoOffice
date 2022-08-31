@@ -1,7 +1,5 @@
-
 .folders-header {
-
-background: rgb(140, 140, 155);
+    background: rgb(140, 140, 155);
 
     height: 1.25em;
     padding: .25em .25em;
@@ -12,18 +10,30 @@ background: rgb(140, 140, 155);
 
 }
 
-.new-folder {
-
+.new-folder-btn {
     cursor: pointer;
 
-    width: 2em;
+    width: 2.125em;
+    height: 1.875em;
+
+    color: gainsboro;
+    background: gray;
+
     border-radius: .375em;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-folder-btn:hover {
+    border-color: dimgray;
+    color: white;
+    background: silver;
 }
 
 .folder-list {
-
-background: rgb(109, 94, 96);
+    background: rgb(109, 94, 96);
 
     margin: 0;
     padding: .25em .25em .25em .5em;
@@ -36,7 +46,6 @@ background: rgb(109, 94, 96);
 }
 
 .folder-list-item {
-
     cursor: pointer;
 
     margin: .25em .125em .25em .25em;
@@ -44,26 +53,39 @@ background: rgb(109, 94, 96);
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     border-radius: .25em;
 
 }
 
-.selected {
-
-    cursor: unset;
-    background: whitesmoke;
-
-    outline: 5px blue solid;
-}
-
 .folder-list-item:hover {
-
     background: grey;
     box-shadow: black 1px 1px 1px 1px;
-
 }
 
-.folder-list-item:hover > .list-item-del {
-    display: unset;
+.folder-list-item > p {
+    padding: 0;
+    margin: 0;
+    max-width: 80%;
+    line-height: 92%;
+}
+
+.folder-btn {
+    height: 1.5em;
+    width: 1.5em;
+
+    border-radius: 4px;
+
+    display: flex;
+
+    color: white;
+
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.folder-list-item:hover > .folder-btn {
+    opacity: 100%;
 }

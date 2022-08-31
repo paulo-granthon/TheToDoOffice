@@ -30,9 +30,9 @@
     >
     {% endif %}
 
-        {{ folder.folder_name }}
+        <p>{{ folder.folder_name }}</p>
 
-        {% include 'delete.html' with del_url="f_del" item_id=folder.pk target="#tasks-wrapper" item="folder" text="Any tasks inside this folder will be deleted" btn_text="" %}
+        {% include 'delete.html' with del_url="f_del" item_id=folder.pk target="#tasks-wrapper" item="folder" class="folder-btn" text="Any tasks inside this folder will be deleted" %}
 
 
 {% endif %}

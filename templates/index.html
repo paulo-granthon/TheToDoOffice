@@ -77,13 +77,13 @@
         elements[i].addEventListener("click", function(event) {
             if (event.ctrlKey) {
                 // console.log("task_select_multi_" + this.id);
-                this.children[1].dispatchEvent(
+                this.children[0].children[2].dispatchEvent(
                     new Event("task_select_multi")
                 );
             }
             else {
                 // console.log("task_select_" + this.id);
-                this.children[0].dispatchEvent(
+                this.children[0].children[1].dispatchEvent(
                     new Event("task_select")
                 );
             }

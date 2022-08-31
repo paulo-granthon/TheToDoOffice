@@ -3,39 +3,49 @@
 {% else %}
 <div class="task" id="task_{{ task.pk }}">
 {% endif %}
-    <div id="task-complete-box" class="task-complete-box task-btn"
-         hx-get="{% url 'complete' task.pk %}"
-         hx-target="#task_{{ task.pk }}"
-         hx-swap="outerHTML"
-         hx-trigger="click"
-         _="on htmx:afterRequest log 'task {{ task.pk }} is now {{ task.completed }}'"
-    >
-        {% if task.completed %}
-        <span class="material-symbols-outlined">
-            done
-        </span>
-        {% endif %}
-    </div>
+    <div class="task-data-wrapper">
+        <div id="task-complete-box" class="task-complete-box task-btn"
+            hx-get="{% url 'complete' task.pk %}"
+            hx-target="#task_{{ task.pk }}"
+            hx-swap="outerHTML"
+            hx-trigger="click"
+            _="on htmx:afterRequest log 'task {{ task.pk }} is now {{ task.completed }}'"
+        >
+            {% if task.completed %}
+            <span class="material-symbols-outlined"> done </span>
+            {% endif %}
+        </div>
 
-    <div id="#select_{{ task.pk }}"
-         style="display: none;"
-         hx-post="{% url 'sel' task.pk %}"
-         hx-target="#null"
-         hx-swap="innerHTML"
-         hx-trigger="task_select"
-         _="on htmx:afterRequest remove .selected from .task then add .selected to closest .task log 'single_sel | task {{ task.pk }} selected'"
-></div>
-    <div id="#select_multi_{{ task.pk }}"
-         style="display: none;"
-         hx-post="{% url 'sel_multi' task.pk %}"
-         hx-target="#null"
-         hx-swap="innerHTML"
-         hx-trigger="task_select_multi"
-         _="on htmx:afterRequest toggle .selected on closest .task log 'multi_sel | task {{ task.pk }} selected'"
-></div>
-    <div class="task-text">{{ task.title }}</div>
-<!--    <div><a href="{ url 'task' task.id %}">View</a></div>-->
-<!--    <div><a href="{ url 'edit' task.id %}">Edit</a></div>-->
-    <div class="task-move-btn task-btn hover-only-btn"> </div>
-    {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" btn_text="X" class="task-btn hover-only-btn" %}
+        <div id="#select_{{ task.pk }}"
+            style="display: none;"
+            hx-post="{% url 'sel' task.pk %}"
+            hx-target="#null"
+            hx-swap="innerHTML"
+            hx-trigger="task_select"
+            _="on htmx:afterRequest for t in .task
+                    if t is closest .task 
+                        toggle .selected on t then log 'toggled .selected on target task obj'
+                    else 
+                        remove .selected from t then log 'removed .selected from other task obj'
+                    end
+                end"
+    ></div>
+        <div id="#select_multi_{{ task.pk }}"
+            style="display: none;"
+            hx-post="{% url 'sel_multi' task.pk %}"
+            hx-target="#null"
+            hx-swap="innerHTML"
+            hx-trigger="task_select_multi"
+            _="on htmx:afterRequest toggle .selected on closest .task log 'multi_sel | task {{ task.pk }} selected'"
+    ></div>
+        <div class="task-text">{{ task.title }}</div>
+    </div>
+    <div class="task-btn-wrapper">
+        <div class="task-move-btn task-btn hover-only-btn">
+            <span class="material-symbols-outlined">
+                drive_file_move
+            </span>
+        </div>
+        {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" class="task-btn hover-only-btn" %}
+    </div>
 </div>

@@ -3,7 +3,6 @@ hr {
 }
 
 .modal-wrapper {
-
     position:fixed;
     top: 0;
     left: 0;
@@ -29,7 +28,6 @@ hr {
 }
 
 .modal-header {
-
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -41,7 +39,6 @@ hr {
 }
 
 .new-folder-modal {
-
     border: 3px solid black;
 
     background: white;

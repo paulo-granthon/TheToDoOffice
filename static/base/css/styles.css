@@ -43,7 +43,7 @@ body{
 .new-task-form {
     background:dimgray;
     
-    padding: 0 0 0 .25em;
+    padding: .125em .125em .125em .25em;
 
     /* outline: black 2px solid; */
     border-radius: 4px;
@@ -55,6 +55,7 @@ body{
 }
 
 .new-task-form > input {
+    height: 1.75em;
     width: 80%;
     background: rgb(201, 201, 214);
     box-shadow: inset white 0 0 5px;
@@ -62,12 +63,28 @@ body{
     border-radius: 4px;
 }
 
-.new-task-form > button {
+.new-task-form > input:hover {
+    background: gainsboro;
+    box-shadow: inset lightcyan 0 0 10px;
+}
 
-    border:thistle 2px groove;
-    height: 1.75em;
+.new-task-form > input:focus {
+    outline: skyblue solid 3px;
+    background: white;
+    box-shadow: inset lightsteelblue 0 0 8px;
+
+}
+
+.new-task-form > button {
+    border:thistle 4px groove;
+    height: 2.5em;
     border-radius: 4px;
 }
+
+.new-task-form > button:hover {
+    border-color: lightcyan;
+}
+
 /* right side */
 .container {
 
@@ -246,6 +263,11 @@ body{
 
 }
 
+.task-data-wrapper {
+    display: flex;
+    align-items: center;
+}
+
 .task-completed {
     background: dimgray;
     outline-width: 1px;
@@ -276,20 +298,30 @@ body{
     text-shadow: yellowgreen 1px 0px 2px;
 }
 
-.task-completed > .task-complete-box {
+.task-completed > .task-data-wrapper > .task-complete-box {
     outline: 3px solid darkgray;
     background: rgb(116, 116, 116);
     box-shadow: none;
 }
 
-.task-completed > .task-text {
+.task-completed > .task-data-wrapper > .task-text {
     color: darkgreen;
     text-decoration: line-through;
     font-style: italic;
+    text-align: left;
 }
 
 .task-text {
+    user-select: none;
     margin: 0 .5em;
+}
+
+.task-btn-wrapper {
+    width: 3.75em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .task-btn {
@@ -325,8 +357,15 @@ body{
     border-radius: .25em;
 }
 
-.task:hover > .hover-only-btn {
+.task:hover > .task-btn-wrapper > .hover-only-btn {
     opacity: 100%;
+}
+
+.selected {
+    cursor: unset;
+    background: whitesmoke;
+
+    outline: 5px blue groove;
 }
 
 .search-box {
