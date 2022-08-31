@@ -239,16 +239,53 @@ body{
 
     background-color: white;
 
+    outline: solid darkgreen 3px;
     border: 2px outset darkslategrey;
+    
     border-radius: 8px;
+
+}
+
+.task-completed {
+    background: dimgray;
+    outline-width: 1px;
+    border: 3px solid rgb(36, 56, 34);
 }
 
 .task-complete-box {
-    height: 1.5em;
-    width: 1.5em;
+    height: 1.25em;
+    width: 1.25em;
 
-    background: yellowgreen;
+    background: silver;
 
+    outline: inset gray 3px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+}
+
+.task-complete-box > span {
+    z-index: 1;
+    font-size: xxx-large;
+    font-weight: bolder;
+    color: darkgreen;
+    text-shadow: yellowgreen 1px 0px 2px;
+}
+
+.task-completed > .task-complete-box {
+    outline: 3px solid darkgray;
+    background: rgb(116, 116, 116);
+    box-shadow: none;
+}
+
+.task-completed > .task-text {
+    color: darkgreen;
+    text-decoration: line-through;
+    font-style: italic;
 }
 
 .task-text {

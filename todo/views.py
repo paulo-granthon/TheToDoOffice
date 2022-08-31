@@ -108,6 +108,16 @@ class TaskUpdate(UpdateView):
     success_url = reverse_lazy('index')
 
 
+def t_complete(req, pk):
+    try:
+        task = Task.objects.get(pk=pk)
+    except Task.DoesNotExist:
+        return HttpResponse(status=404)
+    task.completed = not task.completed
+    task.save()
+    return render(req, 'todo/task-list-item.html', {'task': task})
+
+
 def t_del(req, pk):
     Task.objects.get(pk=pk).delete()
     return tasks(req)
