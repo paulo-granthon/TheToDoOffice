@@ -1,4 +1,4 @@
-<div class="list-item-del"
+<div class="list-item-del {{ class }}"
      hx-delete="{% url del_url item_id %}"
      hx-target="{{ target }}"
      hx-trigger="confirmed"
@@ -12,6 +12,6 @@
      if result.isConfirmed trigger confirmed then log '{{ btn_text }}'"
 >
 
-    {{ btn_text }}
+    <p>{{ btn_text }}</p>
 
 </div>

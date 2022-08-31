@@ -15,8 +15,10 @@
          hx-trigger="task_select_multi"
          _="on htmx:afterRequest toggle .selected on closest .task log 'multi_sel | task {{ task.pk }} selected'"
 ></div>
-    <div>{{ task.title }}</div>
+    <div id="task-complete-box" class="task-complete-box task-btn"> </div>
+    <div class="task-text">{{ task.title }}</div>
 <!--    <div><a href="{ url 'task' task.id %}">View</a></div>-->
 <!--    <div><a href="{ url 'edit' task.id %}">Edit</a></div>-->
-    {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" btn_text="X" %}
+    <div class="task-move-btn task-btn hover-only-btn"> </div>
+    {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" btn_text="X" class="task-btn hover-only-btn" %}
 </div>
