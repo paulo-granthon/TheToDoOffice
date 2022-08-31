@@ -3,3 +3,5 @@ venv/
 **/__pycache__
 .github
 db.**
+**.sqlite3
+.vs
