@@ -117,7 +117,7 @@ def t_sel(req, pk):
 
     # try to get task from pk
     try:
-        sel_task = Task.objects.get(pk=pk)
+        Task.objects.get(pk=pk)
 
     # no task found
     except Task.DoesNotExist:
@@ -137,7 +137,7 @@ def t_sel_multi(req, pk):
 
     # try to get task from pk
     try:
-        sel_task = Task.objects.get(pk=pk)
+        Task.objects.get(pk=pk)
 
     # no task found
     except Task.DoesNotExist:
