@@ -15,10 +15,15 @@ urlpatterns = [
 
 htmx_urlpatterns = [
     path('new-task-fast/', views.t_new, name='new-task-fast'),
+
     path('complete/<int:pk>/', views.t_complete, name='complete'),
+
     path('del/<int:pk>/', views.t_del, name='del'),
+
     path('sel/<int:pk>/', views.t_sel, name='sel'),
-    path('sel_multi/<int:pk>/', views.t_sel_multi, name='sel_multi'),
+    path('sel_multi/<int:pk>/', views.t_sel_multi, name='sel-multi'),
+
+    path('change-folder/', views.change_folder_modal, name="task-change-folder")
 ]
 
 urlpatterns += htmx_urlpatterns

@@ -9,7 +9,6 @@
     <div class="folder-list-item"
          hx-get="{% url 'all' %}"
          hx-target="#content-area"
-         _="on htmx:afterRequest x_scroll_apply()"
     >
     {% endif %}
 
@@ -26,7 +25,6 @@
     <div class="folder-list-item"
          hx-get="{% url 'open' folder.pk %}"
          hx-target="#content-area"
-         _="on htmx:afterRequest x_scroll_apply()"
     >
     {% endif %}
 

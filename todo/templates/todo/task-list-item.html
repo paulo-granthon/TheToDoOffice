@@ -32,7 +32,7 @@
     ></div>
         <div id="#select_multi_{{ task.pk }}"
             style="display: none;"
-            hx-post="{% url 'sel_multi' task.pk %}"
+            hx-post="{% url 'sel-multi' task.pk %}"
             hx-target="#null"
             hx-swap="innerHTML"
             hx-trigger="task_select_multi"
@@ -41,7 +41,11 @@
         <div class="task-text">{{ task.title }}</div>
     </div>
     <div class="task-btn-wrapper">
-        <div class="task-move-btn task-btn hover-only-btn">
+        <div class="task-move-btn task-btn hover-only-btn"
+             hx-get="{% url 'task-change-folder' %}"
+             hx-target="#modal-wrapper"
+             hx-swap="outerHTML"
+        >
             <span class="material-symbols-outlined">
                 drive_file_move
             </span>

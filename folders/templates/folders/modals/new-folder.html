@@ -1,11 +1,16 @@
 {% extends 'modal.html' %}
 
 {% block content %}
-<div id="modal-wrapper" class="modal-wrapper">
+<div id="modal-wrapper" class="modal-wrapper"
+     hx-get="{% url 'close_modal' %}"
+     hx-target="#modal-wrapper"
+     hx-swap="outerHTML"
+     hx-trigger="click target:#modal-wrapper"
+>
 
-    <div id="new-folder-modal" class="new-folder-modal">
+    <div id="modal new-folder-modal" class="modal new-folder-modal">
 
-        <h3>Nova Pasta</h3>
+        <h3 class="modal-title">Nova Pasta</h3>
 
         <form   style="justify-content: space-between;"
                 hx-post="{% url 'new_folder' %}"

@@ -24,7 +24,7 @@ hr {
 }
 
 .modal-wrapper > div {
-
+    z-index: 101;
 }
 
 .modal-header {
@@ -38,11 +38,23 @@ hr {
 
 }
 
-.new-folder-modal {
+.modal {
     border: 3px solid black;
 
     background: white;
 
     padding: .25em;
+
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.new-folder-modal {
+
+}
+
+.task-change-folder-modal {
 
 }

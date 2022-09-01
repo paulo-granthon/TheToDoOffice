@@ -178,3 +178,6 @@ def t_sel_multi(req, pk):
         print(task)
 
     return HttpResponse(status=201)
+
+def change_folder_modal(req):
+    return render(req, 'todo/modals/task-change-folder.html', {'folders':Folder.objects.filter(user=req.user)})

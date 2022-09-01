@@ -59,7 +59,7 @@ def new_folder(req):
 
 
 def new_folder_modal(req):
-    return render(req, 'folders/new-folder.html', {})
+    return render(req, 'folders/modals/new-folder.html', {})
 
 #
 # def edit(req):
