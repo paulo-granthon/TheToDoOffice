@@ -254,17 +254,13 @@ body{
     display: flex;
     justify-content: space-between;
 
-    background: red;
+    background: white;
 
     outline: solid darkgreen 3px;
     border: 2px outset darkslategrey;
     
     border-radius: 8px;
 
-}
-
-.task > div {
-    background: purple;
 }
 
 .task-data-wrapper {
@@ -339,26 +335,25 @@ body{
 
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
+    align-self: center;
+
 }
 
 .hover-only-btn {
     opacity: 0;
-}
-
-.task-move-btn {
-
-    background: violet;
-}
-
-.list-item-del {
-
-    cursor: pointer;
     
+    background: gainsboro;
+    box-shadow: inset dimgray 0 0 1px;
+}
+
+.task-move-btn:hover {
+    background: burlywood;
+}
+
+.list-item-del:hover {
     background: red;
-
-    align-self: center;
-
-    border-radius: .25em;
 }
 
 .task:hover > .task-btn-wrapper > .hover-only-btn {

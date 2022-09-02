@@ -22,7 +22,7 @@
 
         <!-- htmx: Select -->
         <div id="#select_{{ task.pk }}"
-             style="background: aqua;"
+             style="display: none;"
              hx-post="{% url 'sel' task.pk %}"
              hx-target="#null"
              hx-swap="innerHTML"
@@ -42,17 +42,17 @@
                     add .selected to closest .task
                 end
             "
-        >x</div>
+        ></div>
 
         <!-- htmx: Select multi -->
         <div id="#select_multi_{{ task.pk }}"
-             style="background: yellow;"
+             style="display: none;"
              hx-post="{% url 'sel-multi' task.pk %}"
              hx-target="#null"
              hx-swap="innerHTML"
              hx-trigger="task_select_multi"
             _="on htmx:afterRequest toggle .selected on closest .task"
-        >y</div>
+        ></div>
 
         <!-- Title -->
         <div class="task-text">{{ task.title }}</div>
