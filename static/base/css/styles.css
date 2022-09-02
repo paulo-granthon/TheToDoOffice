@@ -254,13 +254,17 @@ body{
     display: flex;
     justify-content: space-between;
 
-    background-color: white;
+    background: red;
 
     outline: solid darkgreen 3px;
     border: 2px outset darkslategrey;
     
     border-radius: 8px;
 
+}
+
+.task > div {
+    background: purple;
 }
 
 .task-data-wrapper {

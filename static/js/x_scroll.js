@@ -1,5 +1,5 @@
 
-window.onload = x_scroll_apply;
+// window.onload = x_scroll_apply;
 
 function x_scroll_apply() {
     const container = document.getElementById("task-list");

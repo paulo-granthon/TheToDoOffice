@@ -7,7 +7,7 @@
     <!-- Task Data -->
     <div class="task-data-wrapper">
 
-        <!-- Checkbox / Completed -->
+        <!-- Completed Checkbox -->
         <div id="task-complete-box" class="task-complete-box task-btn"
             hx-get="{% url 'complete' task.pk %}"
             hx-target="#task_{{ task.pk }}"
@@ -22,29 +22,37 @@
 
         <!-- htmx: Select -->
         <div id="#select_{{ task.pk }}"
-             style="display: none;"
+             style="background: aqua;"
              hx-post="{% url 'sel' task.pk %}"
              hx-target="#null"
              hx-swap="innerHTML"
              hx-trigger="task_select"
-            _="on htmx:afterRequest for t in .task
-                    if t is closest .task 
-                        toggle .selected on t then log 'toggled .selected on target task obj'
-                    else 
-                        remove .selected from t then log 'removed .selected from other task obj'
+            _="on htmx:afterRequest
+                set x to 0
+                for t in .task
+                    if t is not closest .task 
+                        if is_selected(t)
+                            remove .selected from t then increment x then log 'removed .selected from t'
+                        end
                     end
-                end"
-        ></div>
+                end
+                if x < 1
+                    toggle .selected on closest .task
+                else
+                    add .selected to closest .task
+                end
+            "
+        >x</div>
 
         <!-- htmx: Select multi -->
         <div id="#select_multi_{{ task.pk }}"
-             style="display: none;"
+             style="background: yellow;"
              hx-post="{% url 'sel-multi' task.pk %}"
              hx-target="#null"
              hx-swap="innerHTML"
              hx-trigger="task_select_multi"
-            _="on htmx:afterRequest toggle .selected on closest .task log 'multi_sel | task {{ task.pk }} selected'"
-    ></div>
+            _="on htmx:afterRequest toggle .selected on closest .task"
+        >y</div>
 
         <!-- Title -->
         <div class="task-text">{{ task.title }}</div>
