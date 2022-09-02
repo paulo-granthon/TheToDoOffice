@@ -3,7 +3,11 @@
 {% else %}
 <div class="task" id="task_{{ task.pk }}">
 {% endif %}
+
+    <!-- Task Data -->
     <div class="task-data-wrapper">
+
+        <!-- Checkbox / Completed -->
         <div id="task-complete-box" class="task-complete-box task-btn"
             hx-get="{% url 'complete' task.pk %}"
             hx-target="#task_{{ task.pk }}"
@@ -16,12 +20,13 @@
             {% endif %}
         </div>
 
+        <!-- htmx: Select -->
         <div id="#select_{{ task.pk }}"
-            style="display: none;"
-            hx-post="{% url 'sel' task.pk %}"
-            hx-target="#null"
-            hx-swap="innerHTML"
-            hx-trigger="task_select"
+             style="display: none;"
+             hx-post="{% url 'sel' task.pk %}"
+             hx-target="#null"
+             hx-swap="innerHTML"
+             hx-trigger="task_select"
             _="on htmx:afterRequest for t in .task
                     if t is closest .task 
                         toggle .selected on t then log 'toggled .selected on target task obj'
@@ -29,18 +34,26 @@
                         remove .selected from t then log 'removed .selected from other task obj'
                     end
                 end"
-    ></div>
+        ></div>
+
+        <!-- htmx: Select multi -->
         <div id="#select_multi_{{ task.pk }}"
-            style="display: none;"
-            hx-post="{% url 'sel-multi' task.pk %}"
-            hx-target="#null"
-            hx-swap="innerHTML"
-            hx-trigger="task_select_multi"
+             style="display: none;"
+             hx-post="{% url 'sel-multi' task.pk %}"
+             hx-target="#null"
+             hx-swap="innerHTML"
+             hx-trigger="task_select_multi"
             _="on htmx:afterRequest toggle .selected on closest .task log 'multi_sel | task {{ task.pk }} selected'"
     ></div>
+
+        <!-- Title -->
         <div class="task-text">{{ task.title }}</div>
     </div>
+
+    <!-- right buttons: Move; Delete -->
     <div class="task-btn-wrapper">
+
+        <!-- Move / Change Folder button -->
         <div class="task-move-btn task-btn hover-only-btn"
              hx-get="{% url 'task-change-folder' %}"
              hx-target="#modal-wrapper"
@@ -50,6 +63,8 @@
                 drive_file_move
             </span>
         </div>
+
+        <!-- Delete button -->
         {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" class="task-btn hover-only-btn" %}
     </div>
 </div>
