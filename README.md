@@ -3,7 +3,7 @@
 A place where you can easily track your tasks
 
 ## What is it?
-ToDoOffice is a web based application made predominately with Django and HTMX that allows the user to create and keep track of *Tasks* and complete them with a single click.
+ToDoOffice is a web based application made predominantly with Django and HTMX that allows the user to create and keep track of *Tasks* and complete them with a single click.
 
 ## How to use
 ### Create Tasks:
