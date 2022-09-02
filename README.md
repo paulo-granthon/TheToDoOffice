@@ -18,7 +18,8 @@ On the right side of a task, click the *red trash icon* to delete the Task.
 ### Select Tasks
 when you click over the *body* of a Task, the Task will be selected. Currently there are no actions that you can do using the selected Task(s), however, there are planned functionalities that will put this resource to a good use in a near future.
 
-    You can select **multiple** Tasks by ***selecting a task while pressing the CTRL key you the keyboard***
+#### Select multiple Tasks
+You can select **multiple** Tasks by ***selecting a task while pressing the CTRL key you the keyboard***.
 
 ### Create Folders
 Click the *New Folder* button on the top right corner of the *Folder List*, just bellow the *input box*. A pop-up will appear, type the Folder's name and click *Ok* or press *Enter* to finish creating the Folder.  
