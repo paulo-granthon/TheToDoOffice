@@ -10,11 +10,11 @@ ToDoOffice is a web based application made predominately with Django and HTMX th
 
 ## Functionalities
 *Authentication
-- [x] Register and login
+- [x] Register and login  
 *Tasks:
 - [x] Create and delete
 - [x] Check as completed
-- [ ] Move to/from Folder
+- [ ] Move to/from Folder  
 *Folders:
 - [x] Create and delete
 - [x] Open and display it's contents
