@@ -12,7 +12,7 @@ ToDoOffice is a web based application made predominantly with Django and HTMX th
 ### Complete Tasks:
 > On the left side of a Task, click the *checkbox* to check or uncheck the completion status of that Task.  
 
-### Move Task: ***\*new\****  
+### 🆕 Move Task:
 > On the right side of a Task, when you hover your mouse over it, the *move* button will be revealed. *Click* it to show a pop-up with a list of Folders to select which on you want to move the Task to. A confirmation dialog will appear with the options to continue moving the task to the desired folder or cancel the operation.  
 
 ### Delete Task:
