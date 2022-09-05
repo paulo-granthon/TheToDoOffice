@@ -29,7 +29,7 @@ ToDoOffice is a web based application made predominantly with Django and HTMX th
 
 ### Delete Folder:
 > On the *Folder List*, whenever you hover your mouse pointer over a Folder, a *red trash icon* will be revealed. *Click* it to show a pop-up with a confirmation to delete the Folder.  
-.
+
 ## Functionalities
 #### Authentication
 > - [x] Register and login.  
