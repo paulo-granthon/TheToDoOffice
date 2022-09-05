@@ -63,7 +63,7 @@
 
         <!-- Move / Change Folder button -->
         <div class="task-move-btn task-btn hover-only-btn"
-             hx-get="{% url 'task-change-folder' %}"
+             hx-get="{% url 'move-modal' task.pk %}"
              hx-target="#modal-wrapper"
              hx-swap="outerHTML"
         >

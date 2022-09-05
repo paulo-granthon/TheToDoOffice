@@ -13,17 +13,29 @@ urlpatterns = [
 
 ]
 
+# Those will return partial renders for the htmx to swap
 htmx_urlpatterns = [
+
+    # create
     path('new-task-fast/', views.t_new, name='new-task-fast'),
 
+    # task actions
     path('complete/<int:pk>/', views.t_complete, name='complete'),
-
+    path('move/<int:pk>/to/<int:pk2>', views.t_move, name='move'),  ###########
+    path('move/<int:pk>/to/-1', views.t_move, name='move'),  ###########
     path('del/<int:pk>/', views.t_del, name='del'),
 
+    # selects
     path('sel/<int:pk>/', views.t_sel, name='sel'),
     path('sel_multi/<int:pk>/', views.t_sel_multi, name='sel-multi'),
 
-    path('change-folder/', views.change_folder_modal, name="task-change-folder")
+    # selected actions
+    path('sel_complete/<int:pk>/', views.sel_complete, name='sel-complete'),
+    path('sel_move/<int:pk>/to/<int:pk2>', views.sel_move, name='sel-move'), ###########          
+    path('sel_del/<int:pk>/', views.sel_del, name='sel-del'),
+
+    # modals
+    path('move/<int:pk>', views.move_modal, name="move-modal")
 ]
 
 urlpatterns += htmx_urlpatterns

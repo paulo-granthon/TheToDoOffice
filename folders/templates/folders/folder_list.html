@@ -15,15 +15,15 @@
     </div>
     <ul class="folder-list">
         {% if current_folder is None %}
-            {% include 'folders/folder-list-item.html' with selected=True %}
+            {% include 'folders/folder_list_item.html' with selected=True %}
         {% else %}
-            {% include 'folders/folder-list-item.html' with selected=False %}
+            {% include 'folders/folder_list_item.html' with selected=False %}
         {% endif %}
         {% for folder in folders %}
             {% if folder.id is current_folder.id %}
-                {% include 'folders/folder-list-item.html' with folder=folder selected=True %}
+                {% include 'folders/folder_list_item.html' with folder=folder selected=True %}
             {% else %}
-                {% include 'folders/folder-list-item.html' with folder=folder selected=False %}
+                {% include 'folders/folder_list_item.html' with folder=folder selected=False %}
             {% endif %}
         {% endfor %}
     </ul>

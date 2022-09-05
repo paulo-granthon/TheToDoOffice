@@ -1,4 +1,5 @@
 # general app imports
+from telnetlib import STATUS
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.shortcuts import render
@@ -16,6 +17,10 @@ from .forms import TaskFormFast
 from folders.models import Folder
 
 
+#region main
+
+
+# Renders the index
 class Index(TemplateView):
     template_name = 'index.html'
 
@@ -24,6 +29,7 @@ class Index(TemplateView):
         return get_context(self.request, context)
 
 
+# Returns Index / TaskList context: the tasks, folders, current folder, search input, task create form
 def get_context(request, context):
 
     # if context already contains 'tasks', update the list
@@ -78,36 +84,69 @@ def get_context(request, context):
     return context
 
 
+# Returns a render of the Task List with updated context
 def tasks(req):
     return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
+#endregion
+
+
+#region old CBV
+
+
+# old: CBV to see Task's details
 class TaskDetail(DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'todo/task.html'
 
 
-def t_new(req):
-    folder = None
-    if 'current_folder' in req.session and req.session['current_folder'] >= 0:
-        try:
-            folder = Folder.objects.get(pk=req.session['current_folder'])
-        except Folder.DoesNotExist:
-            pass
-        print("new task in folder: " + folder.folder_name)
-    else:
-        print("new uncategorized task")
-    Task.objects.create(user=req.user, title=req.POST.get('title'), folder=folder)
-    return render(req, 'todo/task_list.html', get_context(req, {'tasks': Task.objects.filter(user=req.user)}))
-
-
+# old: CBV to update tasks
 class TaskUpdate(UpdateView):
     model = Task
     fields = ['title', 'description', 'completed']
     success_url = reverse_lazy('index')
 
 
+#endregion
+
+
+#region main Task actions
+
+
+# Create a new Task
+def t_new(req):
+
+    # Initialize a folder reference
+    folder = None
+
+    # Checks if there's a current folder in the user's session
+    if 'current_folder' in req.session and req.session['current_folder'] >= 0:
+
+        # Try to assign the current folder to the local reference
+        try:
+            folder = Folder.objects.get(pk=req.session['current_folder'])
+
+        # Ignore if None found and continue with the call
+        except Folder.DoesNotExist:
+            pass
+
+        # Log with target folder name
+        print("new task in folder: " + folder.folder_name)
+
+    # No folder in session
+    else:
+        print("new uncategorized task")
+
+    # Create the Task with the folder 'folder'
+    Task.objects.create(user=req.user, title=req.POST.get('title'), folder=folder)
+
+    # Return the updated Task List to be swapped in by HTMX
+    return render(req, 'todo/task_list.html', get_context(req, {'tasks': Task.objects.filter(user=req.user)}))
+
+
+# Checks / Unchecks the Task as complete
 def t_complete(req, pk):
     try:
         task = Task.objects.get(pk=pk)
@@ -115,14 +154,42 @@ def t_complete(req, pk):
         return HttpResponse(status=404)
     task.completed = not task.completed
     task.save()
-    return render(req, 'todo/task-list-item.html', {'task': task})
+    return render(req, 'todo/task_list_item.html', {'task':task})
 
 
+# Moves the Task to a Folder
+def t_move (req, pk, pk2=-1):
+    try:
+        task = Task.objects.get(pk=pk)
+    except Task.DoesNotExist:
+        return HttpResponse(status=404)
+    if pk2 < 0:
+        folder = None
+    else:
+        try:
+            folder = Folder.objects.get(pk=pk2)
+        except Folder.DoesNotExist:
+            return HttpResponse(status=404)
+    task.folder = folder
+    task.save()
+    return render(req, 'todo/task_list.html', get_context(req, {}))
+
+
+
+# Deletes a Task
 def t_del(req, pk):
     Task.objects.get(pk=pk).delete()
     return tasks(req)
 
 
+
+#endregion
+
+
+#region Select
+
+
+# Selects / Unselects a Task, overwriting any selected tasks with the newly selected task
 def t_sel(req, pk):
 
     # try to get task from pk
@@ -145,6 +212,7 @@ def t_sel(req, pk):
     return HttpResponse(status=201)
 
 
+# Selects / Unselects a Task incrementally with previously selected Tasks
 def t_sel_multi(req, pk):
 
     # try to get task from pk
@@ -179,5 +247,40 @@ def t_sel_multi(req, pk):
 
     return HttpResponse(status=201)
 
-def change_folder_modal(req):
-    return render(req, 'todo/modals/task-change-folder.html', {'folders':Folder.objects.filter(user=req.user)})
+
+#endregion
+
+
+#region selected Task actions
+
+
+# Checks / Unchecks the selected Tasks' "complete"
+def sel_complete (req):
+    pass
+
+
+# Deletes the selected Tasks
+def sel_del (req):
+    pass
+
+
+def sel_move (req, pk):
+    pass
+
+
+#endregion
+
+
+#region modals
+
+
+# Opens the modal to move a Task to a Folder
+def move_modal(req, pk):
+    try:
+        task = Task.objects.get(pk=pk)
+    except Task.DoesNotExist:
+        return HttpResponse(status=404)
+    return render(req, 'todo/modals/move_modal.html', {'folders':Folder.objects.filter(user=req.user), 'target_task':task})
+
+
+#endregion

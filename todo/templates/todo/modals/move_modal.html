@@ -13,8 +13,19 @@
         <h3 class="modal-title">Mover para...</h3>
 
         <ul>
+            <div class="task-change-folder-li"
+                    hx-get="{% url 'move' target_task.pk %}"
+                    hx-target="#content-area"
+                    _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+            >
+                Todas
+            </div>
             {% for folder in folders %}
-                <div class="task-change-folder-li">
+                <div class="task-change-folder-li"
+                        hx-get="{% url 'move' target_task.pk folder.pk %}"
+                        hx-target="#content-area"
+                        _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+                >
                     {{ folder.folder_name }}
                 </div>
 

@@ -27,7 +27,7 @@
         <!--task list-->
         <div class="task-list" id="task-list">
             {% for task in tasks %}
-                {% include 'todo/task-list-item.html' with task=task %}
+                {% include 'todo/task_list_item.html' with task=task %}
             {% empty %}
             <div style="padding-left:4em">empty...</div>
             {% endfor %}
