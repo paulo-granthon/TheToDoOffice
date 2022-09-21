@@ -290,12 +290,17 @@ body{
 
 }
 
-.task-complete-box > span {
+.check-box {
+    opacity: 0;
     z-index: 1;
     font-size: xxx-large;
     font-weight: bolder;
     color: darkgreen;
     text-shadow: yellowgreen 1px 0px 2px;
+}
+
+.check-box-active {
+    opacity: unset;
 }
 
 .task-completed > .task-data-wrapper > .task-complete-box {
@@ -360,11 +365,11 @@ body{
     opacity: 100%;
 }
 
-.selected {
+.task-selected {
     cursor: unset;
-    background: whitesmoke;
+    /* background: whitesmoke; */
 
-    outline: 5px blue groove;
+    outline: 4px blue groove;
 }
 
 .search-box {

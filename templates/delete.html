@@ -1,4 +1,4 @@
-<div class="list-item-del {{ class }}"
+<div class="list-item-del {{ class }}" id="del-btn"
      hx-delete="{% url del_url item_id %}"
      hx-target="{{ target }}"
      hx-trigger="confirmed"
@@ -9,7 +9,8 @@
         showDenyButton: true,
         confirmButtonText: 'Yes, delete it!'
      })
-     if result.isConfirmed trigger confirmed"
+     if result.isConfirmed trigger confirmed
+     add_listeners_to_task()"
 >
     <span class="material-symbols-outlined">
         delete

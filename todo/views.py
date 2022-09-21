@@ -154,7 +154,8 @@ def t_complete(req, pk):
         return HttpResponse(status=404)
     task.completed = not task.completed
     task.save()
-    return render(req, 'todo/task_list_item.html', {'task':task})
+    return HttpResponse(status=200)
+    # return render(req, 'todo/task_list_item.html', {'task':task})
 
 
 # Moves the Task to a Folder
@@ -173,7 +174,6 @@ def t_move (req, pk, pk2=-1):
     task.folder = folder
     task.save()
     return render(req, 'todo/task_list.html', get_context(req, {}))
-
 
 
 # Deletes a Task
@@ -264,8 +264,22 @@ def sel_del (req):
     pass
 
 
-def sel_move (req, pk):
-    pass
+def sel_move (req, pk=-1):
+    if pk < 0:
+        folder = None
+    else:
+        try:
+            folder = Folder.objects.get(pk=pk)
+        except Folder.DoesNotExist:
+            return HttpResponse(status=404)
+    if 'sel_tasks' not in req.session or len(list(req.session['sel_tasks'])) < 1:
+        return HttpResponse(status=201)
+    tasks = list(req.session['sel_tasks'])
+    for task in tasks:
+        task.folder = folder
+        task.save()
+    req.session['sel_tasks'] = tasks
+    return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
 #endregion
@@ -281,6 +295,14 @@ def move_modal(req, pk):
     except Task.DoesNotExist:
         return HttpResponse(status=404)
     return render(req, 'todo/modals/move_modal.html', {'folders':Folder.objects.filter(user=req.user), 'target_task':task})
+
+
+def sel_move_modal(req, pk):
+    try:
+        task = Task.objects.get(pk=pk)
+    except Task.DoesNotExist:
+        return HttpResponse(status=404)
+    return render(req, 'todo/modals/sel_move_modal.html', {'folders':Folder.objects.filter(user=req.user)})
 
 
 #endregion

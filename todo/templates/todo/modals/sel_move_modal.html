@@ -1,0 +1,49 @@
+{% extends 'modal.html' %}
+
+{% block content %}
+<div id="modal-wrapper" class="modal-wrapper"
+     hx-get="{% url 'close_modal' %}"
+     hx-target="#modal-wrapper"
+     hx-swap="outerHTML"
+     hx-trigger="click target:#modal-wrapper"
+>
+
+    <div id="modal task-change-folder-modal" class="modal task-change-folder-modal">
+
+        <h3 class="modal-title">Mover selecionadas para...</h3>
+
+        <ul>
+            <div class="task-change-folder-li"
+                    hx-get="{% url 'sel_move_to' %}"
+                    hx-target="#content-area"
+                    _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+            >
+                Todas
+            </div>
+            {% for folder in folders %}
+                <div class="task-change-folder-li"
+                        hx-get="{% url 'sel_move_to' folder.pk %}"
+                        hx-target="#content-area"
+                        _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+                >
+                    {{ folder.folder_name }}
+                </div>
+
+            {% endfor %}
+        </ul>
+
+        <button class="close-modal"
+                type="button"
+                hx-get="{% url 'close_modal' %}"
+                hx-target="#modal-wrapper"
+                hx-swap="outerHTML"
+        >
+        cancel
+        </button>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

@@ -8,6 +8,10 @@
     _="on htmx:afterRequest x_scroll_apply() log 'folder-list updated!'"
 >
 
+    <div style="display: none;"
+         _="on htmx:load from #content-area call add_listeners_to_task()"
+    ></div>
+
     <!-- folder name -->
     <div class="folder-name-container">
         <div><h1 class="folder-name-text"></h1></div>

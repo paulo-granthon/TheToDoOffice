@@ -2,14 +2,13 @@
 
     {% if selected is True %}
 
-    <div class="folder-list-item selected">
+    <div class="folder-list-item folder-selected">
 
     {% else %}
 
     <div class="folder-list-item"
          hx-get="{% url 'all' %}"
          hx-target="#content-area"
-         _="on htmx:afterRequest add_select_el_to_tasks()"
     >
     {% endif %}
 
@@ -19,14 +18,13 @@
 
     {% if selected is True %}
 
-    <div class="folder-list-item selected">
+    <div class="folder-list-item folder-selected">
 
     {% else %}
 
     <div class="folder-list-item"
          hx-get="{% url 'open' folder.pk %}"
          hx-target="#content-area"
-         _="on htmx:afterRequest add_select_el_to_tasks()"
     >
     {% endif %}
 

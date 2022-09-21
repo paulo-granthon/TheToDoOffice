@@ -21,8 +21,8 @@ htmx_urlpatterns = [
 
     # task actions
     path('complete/<int:pk>/', views.t_complete, name='complete'),
-    path('move/<int:pk>/to/<int:pk2>', views.t_move, name='move'),  ###########
-    path('move/<int:pk>/to/-1', views.t_move, name='move'),  ###########
+    path('move/<int:pk>/to/<int:pk2>', views.t_move, name='move'),
+    path('move/<int:pk>/to/-1', views.t_move, name='move'),
     path('del/<int:pk>/', views.t_del, name='del'),
 
     # selects
@@ -31,11 +31,13 @@ htmx_urlpatterns = [
 
     # selected actions
     path('sel_complete/<int:pk>/', views.sel_complete, name='sel-complete'),
-    path('sel_move/<int:pk>/to/<int:pk2>', views.sel_move, name='sel-move'), ###########          
+    path('sel_move_to/<int:pk>', views.sel_move, name='sel-move'),          
+    path('sel_move_to/-1', views.sel_move, name='sel-move'),          
     path('sel_del/<int:pk>/', views.sel_del, name='sel-del'),
 
     # modals
-    path('move/<int:pk>', views.move_modal, name="move-modal")
+    path('move/<int:pk>', views.move_modal, name="move-modal"),
+    path('sel_move/', views.sel_move_modal, name="sel-move-modal"),
 ]
 
 urlpatterns += htmx_urlpatterns

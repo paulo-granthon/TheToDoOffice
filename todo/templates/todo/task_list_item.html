@@ -1,27 +1,35 @@
 {% if task.completed %}
-<div class="task task-completed" id="task_{{ task.pk }}">
+<div class="task task-completed" id="task_{{ task.pk }}" onclick="task_select(this, event)">
 {% else %}
-<div class="task" id="task_{{ task.pk }}">
+<div class="task" id="task_{{ task.pk }}" onclick="task_select(this, event)">
 {% endif %}
 
-    <!-- Task Data -->
-    <div class="task-data-wrapper">
+    <!-- Completed Checkbox -->
+    <div id="task-complete-box" class="task-complete-box task-btn" onclick="task_complete(this, event)"
+        hx-post="{% url 'complete' task.pk %}"
+        hx-target="#null"
+        hx-swap="innerHTML"
+        hx-trigger="task_complete"
+        _="on htmx:afterRequest 
+            toggle .task-completed on closest .task 
+            log 'task {{ task.pk }} is now {{ task.completed }}'
+        "
+    >
+        {% if task.completed %}
+        <span id="checkbox" class="material-symbols-outlined check-box check-box-active"> done </span>
+        {% else %}
+        <span id="checkbox" class="material-symbols-outlined check-box"> done </span>
+        {% endif %}
+    </div>
 
-        <!-- Completed Checkbox -->
-        <div id="task-complete-box" class="task-complete-box task-btn"
-            hx-get="{% url 'complete' task.pk %}"
-            hx-target="#task_{{ task.pk }}"
-            hx-swap="outerHTML"
-            hx-trigger="click"
-            _="on htmx:afterRequest log 'task {{ task.pk }} is now {{ task.completed }}'"
-        >
-            {% if task.completed %}
-            <span class="material-symbols-outlined"> done </span>
-            {% endif %}
-        </div>
+    <!-- Title -->
+    <div class="task-text">{{ task.title }}</div>
+
+    <!-- htmx with custom event triggers -->
+    <div id="task-selection-wrapper">
 
         <!-- htmx: Select -->
-        <div id="#select_{{ task.pk }}"
+        <div id="task-select-single"
              style="display: none;"
              hx-post="{% url 'sel' task.pk %}"
              hx-target="#null"
@@ -32,40 +40,39 @@
                 for t in .task
                     if t is not closest .task 
                         if is_selected(t)
-                            remove .selected from t then increment x then log 'removed .selected from t'
+                            remove .task-selected from t then increment x then log 'removed .task-selected from t'
                         end
                     end
                 end
                 if x < 1
-                    toggle .selected on closest .task
+                    toggle .task-selected on closest .task
                 else
-                    add .selected to closest .task
+                    add .task-selected to closest .task
                 end
             "
         ></div>
 
         <!-- htmx: Select multi -->
-        <div id="#select_multi_{{ task.pk }}"
+        <div id="task-select-multi"
              style="display: none;"
              hx-post="{% url 'sel-multi' task.pk %}"
              hx-target="#null"
              hx-swap="innerHTML"
              hx-trigger="task_select_multi"
-            _="on htmx:afterRequest toggle .selected on closest .task"
+            _="on htmx:afterRequest toggle .task-selected on closest .task"
         ></div>
-
-        <!-- Title -->
-        <div class="task-text">{{ task.title }}</div>
     </div>
 
     <!-- right buttons: Move; Delete -->
     <div class="task-btn-wrapper">
 
         <!-- Move / Change Folder button -->
-        <div class="task-move-btn task-btn hover-only-btn"
+        <div id="task-move-button" class="task-move-btn task-btn hover-only-btn" onclick="task_move(this, event)"
              hx-get="{% url 'move-modal' task.pk %}"
+             hx-trigger="task_move"
              hx-target="#modal-wrapper"
              hx-swap="outerHTML"
+             _="on htmx:afterRequest log 'this seems to have been triggered'"
         >
             <span class="material-symbols-outlined">
                 drive_file_move
@@ -73,6 +80,22 @@
         </div>
 
         <!-- Delete button -->
-        {% include 'delete.html' with del_url="del" item_id=task.id target="#content-area" item="task" class="task-btn hover-only-btn" %}
+        <div class="list-item-del task-btn hover-only-btn" id="del-btn" onclick="task_delete(this, event)"
+             hx-delete="{% url 'del' task.id %}"
+             hx-target="#content-area"
+             hx-trigger="confirmed"
+             _="on task_delete log 'task_delete event !!!!!!!!!!' then call
+             Swal.fire({
+                title: 'Delete this task?',
+                 showDenyButton: true,
+                 confirmButtonText: 'Yes, delete it!'
+             })
+             if result.isConfirmed trigger confirmed"
+        >
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </div>
+
     </div>
 </div>

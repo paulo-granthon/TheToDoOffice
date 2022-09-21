@@ -71,6 +71,13 @@
     line-height: 92%;
 }
 
+.folder-selected {
+    cursor: unset;
+    background: whitesmoke;
+
+    outline: 4px blue groove;
+}
+
 .folder-btn {
     height: 1.5em;
     width: 1.5em;
