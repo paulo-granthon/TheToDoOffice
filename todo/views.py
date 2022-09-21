@@ -39,8 +39,17 @@ def get_context(request, context):
     else:
         context.update({'tasks': Task.objects.filter(user=request.user)})
 
+    user_folders = Folder.objects.filter(user=request.user)
+
     # get the user's folders
-    context.update({'folders': Folder.objects.filter(user=request.user)})
+    context.update({'folders': user_folders})
+
+    allow_move_btn = True if len(user_folders) > 0 else False
+
+    print(allow_move_btn)
+
+    # set the bool 'allow_move_btn' to true if Users has more than one folder 
+    context.update({'allow_move_btn': allow_move_btn})
 
     # initialize folder variable
     folder = None
@@ -71,9 +80,6 @@ def get_context(request, context):
     # if search input is present, filter the tasks by its text
     if search_input:
         context['tasks'] = context['tasks'].filter(title__icontains=search_input)
-
-    print(context['current_folder'])
-    print(folder)
 
     # update the search input context
     context['search_input'] = search_input

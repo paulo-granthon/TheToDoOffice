@@ -28,8 +28,8 @@ body{
 
     z-index: 1;
 
-    min-width: 14vw;
-    max-width: 14rem;
+    min-width: 12rem;
+    width: 14vw;
 
     background-color: gainsboro;
 

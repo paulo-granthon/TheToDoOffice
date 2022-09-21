@@ -30,8 +30,25 @@
 
         <p>{{ folder.folder_name }}</p>
 
-        {% include 'delete.html' with del_url="f_del" item_id=folder.pk target="#tasks-wrapper" item="folder" class="folder-btn" text="Any tasks inside this folder will be deleted" %}
-
+        <!-- Delete button -->
+        <div class="list-item-del folder-btn hover-only-btn" id="del-btn" onclick="folder_delete(this, event)"
+             hx-delete="{% url 'f_del' folder.pk %}"
+             hx-target="#tasks-wrapper"
+             hx-trigger="confirmed"
+             _="on folder_delete log 'folder_delete event !!!!!!!!!!' then call
+             Swal.fire({
+                title: 'Delete this task?',
+                text:'Any tasks inside this folder will be deleted',
+                 showDenyButton: true,
+                 confirmButtonText: 'Yes, delete it!'
+             })
+             if result.isConfirmed trigger confirmed
+             add_listeners_to_task()"
+        >
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </div>
 
 {% endif %}
 

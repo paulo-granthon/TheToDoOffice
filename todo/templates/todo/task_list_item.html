@@ -65,7 +65,8 @@
 
     <!-- right buttons: Move; Delete -->
     <div class="task-btn-wrapper">
-
+        
+        {% if allow_move_btn is True %}
         <!-- Move / Change Folder button -->
         <div id="task-move-button" class="task-move-btn task-btn hover-only-btn" onclick="task_move(this, event)"
              hx-get="{% url 'move-modal' task.pk %}"
@@ -78,6 +79,7 @@
                 drive_file_move
             </span>
         </div>
+        {% endif %}
 
         <!-- Delete button -->
         <div class="list-item-del task-btn hover-only-btn" id="del-btn" onclick="task_delete(this, event)"

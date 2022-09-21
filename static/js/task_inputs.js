@@ -112,7 +112,6 @@ function task_move (element, event) {
     );
 }
 
-
 // task delete
 function task_delete (element, event) {
     event.stopPropagation();
@@ -124,4 +123,12 @@ function task_delete (element, event) {
 function log_session() {
     let s = Request.log_session['sel_tasks'];
     console.log(s);
+}
+
+// folder delete
+function folder_delete (element, event) {
+    event.stopPropagation();
+    element.dispatchEvent(
+        new Event("folder_delete")
+    );
 }
