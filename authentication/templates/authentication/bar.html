@@ -3,6 +3,7 @@
         <div>Welcome back, {{request.user|title}}!</div>
         <a href="{% url 'logout' %}">Logout</a>
     </div>
-{% else %}
-    <a href="{% url 'login' %}">Login</a>
+{% else %}    <div style="display:flex; justify-content: space-between">
+    <div>Welcome! <a href="{% url 'login' %}">Login</a> to access your tracks from anywhere </div>
+</div>
 {% endif %}

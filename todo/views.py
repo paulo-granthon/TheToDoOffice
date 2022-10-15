@@ -32,14 +32,20 @@ class Index(TemplateView):
 # Returns Index / TaskList context: the tasks, folders, current folder, search input, task create form
 def get_context(request, context):
 
-    # if context already contains 'tasks', update the list
-    # otherwise, create the list
-    if 'tasks' in context:
-        context['tasks'] = context['tasks'].filter(user=request.user)
-    else:
-        context.update({'tasks': Task.objects.filter(user=request.user)})
+    try:
+        user = request.user
 
-    user_folders = Folder.objects.filter(user=request.user)
+        # if context already contains 'tasks', update the list
+        # otherwise, create the list
+        if 'tasks' in context:
+            context['tasks'] = context['tasks'].filter(user=user)
+        else:
+            context.update({'tasks': Task.objects.filter(user=user)})
+
+        user_folders = Folder.objects.filter(user=user)
+    except:
+        context['tasks'] = list()
+        user_folders = list()
 
     # get the user's folders
     context.update({'folders': user_folders})

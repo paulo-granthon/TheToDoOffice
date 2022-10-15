@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{% static 'base/css/styles.css' %}" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a6737b1fe6.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -24,20 +27,34 @@
     <!--left menu with Logo, fast task form and folders list -->
     <div class="toolbar">
 
-        <h1>To Do Office</h1>
-        <hr>
+        <div class="toolbar-main">
+            
+            <h1>To Do Office</h1>
+            <hr>
 
-        {% include 'authentication/bar.html' %}
-        <hr>
+            {% include 'authentication/bar.html' %}
+            <hr>
 
-        {% include 'todo/new_task_fast.html' %}
-        <hr>
+            {% include 'todo/new_task_fast.html' %}
+            <hr>
 
-        {% include 'folders/base.html' %}
-        <hr>
+            {% include 'folders/base.html' %}
+            <hr>
 
-        <p>placeholder footer</p>
-        <p id="null"></p>
+        </div>
+
+        <div class='footer'>
+            <!-- <p style="background-color: green;">placeholder footer</p> -->
+            <div class="footer-item"><a 
+                href="https://github.com/paulo-granthon/"
+                target="_blank" rel="noopener noreferrer"
+            ><i class="fa-brands fa-github"></i></a></div>
+            <div class="footer-item"><a 
+                href="https://linkedin.com/in/paulo-granthon/"
+                target="_blank" rel="noopener noreferrer"
+            ><i class="fa-brands fa-linkedin"></i></a></div>
+            <p id="null"></p>
+        </div>
 
     </div>
 

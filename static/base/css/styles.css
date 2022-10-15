@@ -28,16 +28,53 @@ body{
 
     z-index: 1;
 
-    min-width: 12rem;
+    min-width: 14rem;
     width: 14vw;
 
     background-color: gainsboro;
 
-    padding: 1rem;
+    padding: 0;
 
     border: lightslategray 3px outset;
+    border-bottom: none;
 
-    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+.toolbar-main {
+    padding: 1rem;
+}
+
+.footer {
+    background: dimgray;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top: 4px lightslategray solid;
+}
+
+.footer-item {
+    width: 35%;
+    
+    border-radius: 50%;
+    
+    text-align: center;
+    font-size: medium;
+}
+
+.footer-item > a {
+    color: black;
+}
+
+.footer-item > a:hover {
+    color: gainsboro;
+    text-shadow: white 0 0 5px;
 }
 
 .new-task-form {
