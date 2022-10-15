@@ -1,9 +1,49 @@
 
+:root {
+
+    --dark-green:   darkgreen;
+    --darker-green: rgb(36, 56, 34);
+
+    --base-col-0: #ffffff;
+    --base-col-1: #d9d9d9;
+    --base-col-2: #bfbfbf;
+    --base-col-3: #7e7e7e;
+    --base-col-4: #6f6f6f;
+    --base-col-5: #5b5b5b;
+    --base-col-6: #3f3f3f;
+
+    --soft-highlight-1: thistle;
+    --soft-highlight-2: lightsteelblue;
+
+    --highlight-2: skyblue;
+
+    --sel-tools-btn: mediumblue;
+    --sel-tools-txt: darkseagreen;
+
+    --selected-highlight: blue;
+
+    --scrollbar-thumb: black;
+
+    --folder-color0:  #FF8080; /* red     */
+    --folder-color1:  #FFBF80; /* orange  */
+    --folder-color2:  #FFFF80; /* yellow  */
+    --folder-color3:  #BFFF80; /* green 1 */
+    --folder-color4:  #80FF80; /* green 2 */
+    --folder-color5:  #80FFBF; /* cyan 1  */
+    --folder-color6:  #80FFBF; /* cyan 2  */
+    --folder-color7:  #80FFFF; /* blue 1  */
+    --folder-color8:  #80BFFF; /* blue 2  */
+    --folder-color9:  #8080FF; /* d blue  */
+    --folder-color10: #BF80FF; /* indigo  */
+    --folder-color11: #FF80FF; /* violet  */
+    --folder-color12: #FF80BF; /* pink    */
+}
+
 body{
     padding: 0;
     margin: 0;
 
-    background:darkgray;
+    background:var(--base-col-3);
 }
 
 .main {
@@ -31,11 +71,11 @@ body{
     min-width: 14rem;
     width: 14vw;
 
-    background-color: gainsboro;
+    background: var(--base-col-1);
 
     padding: 0;
 
-    border: lightslategray 3px outset;
+    border: var(--base-col-6) 3px solid;
     border-bottom: none;
 
     display: flex;
@@ -50,13 +90,13 @@ body{
 }
 
 .footer {
-    background: dimgray;
+    background: var(--base-col-6);
     
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border-top: 4px lightslategray solid;
+    border-top: 4px var(--base-col-5) solid;
 }
 
 .footer-item {
@@ -73,12 +113,12 @@ body{
 }
 
 .footer-item > a:hover {
-    color: gainsboro;
-    text-shadow: white 0 0 5px;
+    color: var(--base-col-1);
+    text-shadow: var(--base-col-0) 0 0 5px;
 }
 
 .new-task-form {
-    background:dimgray;
+    background:var(--base-col-6);
     
     padding: .125em .125em .125em .25em;
 
@@ -94,32 +134,32 @@ body{
 .new-task-form > input {
     height: 1.75em;
     width: 80%;
-    background: rgb(201, 201, 214);
-    box-shadow: inset white 0 0 5px;
+    background: var(--base-col-1);
+    box-shadow: inset var(--base-col-0) 0 0 5px;
     border: none;
     border-radius: 4px;
 }
 
 .new-task-form > input:hover {
-    background: gainsboro;
+    background: var(--base-col-1);
     box-shadow: inset lightcyan 0 0 10px;
 }
 
 .new-task-form > input:focus {
-    outline: skyblue solid 3px;
-    background: white;
-    box-shadow: inset lightsteelblue 0 0 8px;
+    outline: var(--hightlight-2) solid 3px;
+    background: var(--base-col-0);
+    box-shadow: inset var(--soft-hightlight-2) 0 0 8px;
 
 }
 
 .new-task-form > button {
-    border:thistle 4px groove;
+    border:var(--soft-highlight-1) 4px groove;
     height: 2.5em;
     border-radius: 4px;
 }
 
 .new-task-form > button:hover {
-    border-color: lightcyan;
+    border-color: var(--highlight-2);
 }
 
 /* right side */
@@ -153,10 +193,10 @@ body{
 
     z-index: 2;
 
-    background:rgb(186, 194, 204);
+    background:var(--base-col-1);
 
 
-    border: 4px rgb(137, 146, 161) solid;
+    border: 4px var(--base-col-2) solid;
     border-radius: 16px;
 
     display: flex;
@@ -182,14 +222,13 @@ body{
 
     height: 1em;
     min-width: 10em;
-
-    background: rgba(255, 255, 255, 0.463);
     
     margin: 0 0 0 1em;
 
     display: block;
 
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* overflow-y: hidden; */
     white-space: nowrap;
 
     text-overflow: ellipsis;
@@ -203,7 +242,7 @@ body{
     /* top: .25em; */
     right: 0;
 
-    background: white;
+    background: var(--base-col-0);
 
     display: flex;
     justify-content: flex-end;
@@ -214,8 +253,8 @@ body{
     margin: .25em;
     min-width: 1em;
 
-    background: mediumblue;
-    color: darkseagreen;
+    background: var(--sel-tools-btn);
+    color: var(--sel-tools-txt);
 
     font-weight: bold;
     font-size: 4vh;
@@ -264,19 +303,19 @@ body{
 /* Track */
 ::-webkit-scrollbar-track {
     border: solid 4px transparent;
-    box-shadow: inset 0 0 14px 14px darkslategray;
+    box-shadow: inset 0 0 14px 14px var(--base-col-6);
     /* box-shadow: inset 0 0 16px black;
     border-radius: 10px; */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    border: inset 2px darkblue;
-    box-shadow: inset 0 0 14px 14px white;
+    border: inset 2px var(--scrollbar-thumb);
+    box-shadow: inset 0 0 14px 14px var(--base-col-1);
     border-radius: 16px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: darkgray;
+    background: var(--base-col-3);
 }
 
 .task {
@@ -291,9 +330,9 @@ body{
     display: flex;
     justify-content: space-between;
 
-    background: white;
+    background: var(--base-col-0);
 
-    outline: solid darkgreen 3px;
+    outline: solid var(--dark-green) 3px;
     border: 2px outset darkslategrey;
     
     border-radius: 8px;
@@ -306,18 +345,18 @@ body{
 }
 
 .task-completed {
-    background: dimgray;
+    background: var(--base-col-6);
     outline-width: 1px;
-    border: 3px solid rgb(36, 56, 34);
+    border: 3px solid var(--darker-green);
 }
 
 .task-complete-box {
     height: 1.25em;
     width: 1.25em;
 
-    background: silver;
+    background: var(--base-col-2);
 
-    outline: inset gray 3px;
+    outline: inset var(--base-col-4) 3px;
 
     display: flex;
     justify-content: center;
@@ -332,7 +371,7 @@ body{
     z-index: 1;
     font-size: xxx-large;
     font-weight: bolder;
-    color: darkgreen;
+    color: var(--dark-green);
     text-shadow: yellowgreen 1px 0px 2px;
 }
 
@@ -341,13 +380,13 @@ body{
 }
 
 .task-completed > .task-data-wrapper > .task-complete-box {
-    outline: 3px solid darkgray;
-    background: rgb(116, 116, 116);
+    outline: 3px solid var(--base-col-3);
+    background: var(--base-col-5);
     box-shadow: none;
 }
 
 .task-completed > .task-data-wrapper > .task-text {
-    color: darkgreen;
+    color: var(--dark-green);
     text-decoration: line-through;
     font-style: italic;
     text-align: left;
@@ -386,8 +425,8 @@ body{
 .hover-only-btn {
     opacity: 0;
     
-    background: gainsboro;
-    box-shadow: inset dimgray 0 0 1px;
+    background: var(--base-col-1);
+    box-shadow: inset var(--base-col-6) 0 0 1px;
 }
 
 .task-move-btn:hover {
@@ -404,9 +443,9 @@ body{
 
 .task-selected {
     cursor: unset;
-    /* background: whitesmoke; */
+    /* background: var(--base-col3)smoke; */
 
-    outline: 4px blue groove;
+    outline: 4px var(--selected-highlight) groove;
 }
 
 .search-box {

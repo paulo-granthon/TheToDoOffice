@@ -1,18 +1,6 @@
 {% extends 'folders/base.html' %}
 {% block content %}
-<div id="folders-wrapper">
-    <div class="folders-header">
-        <h3>Folders</h3>
-        <button class="new-folder-btn"
-                hx-get="{% url 'new_folder_modal' %}"
-                hx-target="#modal-wrapper"
-                hx-swap="outerHTML"
-        >
-            <span class="material-symbols-outlined">
-                create_new_folder
-            </span>
-        </button>
-    </div>
+<div class="folders-container" id="folders-wrapper">
     <ul class="folder-list">
         {% if current_folder is None %}
             {% include 'folders/folder_list_item.html' with selected=True %}
@@ -27,6 +15,18 @@
             {% endif %}
         {% endfor %}
     </ul>
+    <div class="folders-header">
+        <h3>Folders</h3>
+        <button class="new-folder-btn"
+                hx-get="{% url 'new_folder_modal' %}"
+                hx-target="#modal-wrapper"
+                hx-swap="outerHTML"
+        >
+            <span class="material-symbols-outlined">
+                create_new_folder
+            </span>
+        </button>
+    </div>
 </div>
 {% endblock %}
 

@@ -12,25 +12,32 @@
 
         <h3 class="modal-title">Nova Pasta</h3>
 
-        <form   style="justify-content: space-between;"
+        <form   class="new-folder-form"
                 hx-post="{% url 'new_folder' %}"
                 hx-target="#content-area"
                 _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
         >
-            <input type="text" name="folder_name" id="folder_name" placeholder="nome" autofocus autocomplete="off">
-
+            <input style="height: 2em;" type="text" name="folder_name" id="folder_name" placeholder="nome" autofocus autocomplete="off">
+            <div class="folder-color-select-container">
+                {% for i in '0123456'|make_list %}
+                    <div class="folder-color-select-option"></div>
+                {% endfor %}
+            </div>
             <hr>
+            
+            <div style="display: flex; justify-content: space-between;">
 
-            <button class="close-modal"
-                    type="button"
-                    hx-get="{% url 'close_modal' %}"
-                    hx-target="#modal-wrapper"
-                    hx-swap="outerHTML"
-            >
-            cancel
-            </button>
+                <button class="close-modal new-folder-form-btn"
+                        type="button"
+                        hx-get="{% url 'close_modal' %}"
+                        hx-target="#modal-wrapper"
+                        hx-swap="outerHTML"
+                >
+                    cancel
+                </button>
 
-            <button type="submit">ok</button>
+                <button class="new-folder-form-btn" type="submit">ok</button>
+            </div>
 
         </form>
 

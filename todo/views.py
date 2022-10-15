@@ -130,6 +130,10 @@ class TaskUpdate(UpdateView):
 # Create a new Task
 def t_new(req):
 
+    task_title = req.POST.get('title')
+
+    if len(task_title) < 1: return render(req, 'todo/task_list.html', get_context(req, {'tasks': Task.objects.filter(user=req.user)}))
+
     # Initialize a folder reference
     folder = None
 
@@ -152,7 +156,7 @@ def t_new(req):
         print("new uncategorized task")
 
     # Create the Task with the folder 'folder'
-    Task.objects.create(user=req.user, title=req.POST.get('title'), folder=folder)
+    Task.objects.create(user=req.user, title=task_title, folder=folder)
 
     # Return the updated Task List to be swapped in by HTMX
     return render(req, 'todo/task_list.html', get_context(req, {'tasks': Task.objects.filter(user=req.user)}))

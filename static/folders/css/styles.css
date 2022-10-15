@@ -1,5 +1,14 @@
+
+.folders-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .folders-header {
     background: rgb(140, 140, 155);
+
+    transform: translateZ(-1em);
+    border-radius: 6px;
 
     height: 1.25em;
     padding: .25em .25em;
@@ -32,11 +41,53 @@
     background: silver;
 }
 
+.new-folder-form {
+    height: 100%;
+    
+    margin: .25em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.folder-color-select-container {
+    padding: .25em;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.folder-color-select-option {
+    width: 2em;
+    height: 2em;
+    
+    margin: .25em;
+
+    background: red;
+
+    border: 2px black solid;
+    border-radius: 20%;
+}
+
+/* .folder-color-select-option > input { 
+    transform: scale(2);
+} */
+
+.new-folder-form-btn {
+    width: 50%;
+    height: 2.5em;
+}
+
 .folder-list {
-    background: rgb(109, 94, 96);
+    background: var(--base-col-3);
 
     margin: 0;
-    padding: .25em .25em .25em .5em;
+    padding: 1.25em .25em .25em .5em;
+
+    transform: translateY(-1em);
+
+    border-radius: 5%;
 
     display: flex;
     justify-content: center;
