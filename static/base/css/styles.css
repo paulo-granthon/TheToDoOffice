@@ -6,7 +6,7 @@
 
     --base-col-0: #ffffff;
     --base-col-1: #d9d9d9;
-    --base-col-2: #bfbfbf;
+    --base-col-2: #cfcfcf;
     --base-col-3: #7e7e7e;
     --base-col-4: #6f6f6f;
     --base-col-5: #5b5b5b;
@@ -71,7 +71,7 @@ body{
     min-width: 14rem;
     width: 14vw;
 
-    background: var(--base-col-1);
+    background: var(--base-col-2);
 
     padding: 0;
 
@@ -196,8 +196,8 @@ body{
     background:var(--base-col-1);
 
 
-    border: 4px var(--base-col-2) solid;
-    border-radius: 16px;
+    /* border: 4px var(--base-col-2) solid; */
+    border-radius: 4px;
 
     display: flex;
     flex-direction: column;
@@ -281,6 +281,8 @@ body{
 
     z-index: 0;
 
+    margin-top: 1vh;
+
     height: 90.5vh;
     max-width: 86vw;
 
@@ -333,9 +335,9 @@ body{
     background: var(--base-col-0);
 
     outline: solid var(--dark-green) 3px;
-    border: 2px outset darkslategrey;
+    /* border: 2px outset darkslategrey; */
     
-    border-radius: 8px;
+    border-radius: 6px;
 
 }
 
@@ -356,7 +358,7 @@ body{
 
     background: var(--base-col-2);
 
-    outline: inset var(--base-col-4) 3px;
+    outline: solid var(--base-col-6) 3px;
 
     display: flex;
     justify-content: center;
