@@ -93,6 +93,8 @@ def get_context(request, context):
     # pass the TaskForm as context
     context['fast_form'] = TaskFormFast()
 
+    context.update({'theme': 'dark'})
+
     return context
 
 

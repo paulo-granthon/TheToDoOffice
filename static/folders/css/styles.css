@@ -5,7 +5,7 @@
 }
 
 .folders-header {
-    background: rgb(140, 140, 155);
+    background: var(--base-col-4);
 
     transform: translateZ(-1em);
     border-radius: 6px;

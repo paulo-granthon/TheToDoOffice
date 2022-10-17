@@ -6,6 +6,12 @@
     <meta charset="UTF-8">
     <title>TheToDoOffice</title>
 
+    {% if theme == "dark" %}
+    <link rel="stylesheet" href="{% static 'themes/dark.css' %}" />
+    {% else %}
+    <link rel="stylesheet" href="{% static 'themes/light.css' %}" />
+    {% endif%}
+
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.6.0"></script>
 
@@ -20,27 +26,28 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a6737b1fe6.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
 <div class="main">
 
     <!--left menu with Logo, fast task form and folders list -->
-    <div class="toolbar">
+    <div class="toolbar-container"><div class="toolbar">
 
-        <div class="toolbar-main">
-            
-            <h1>To Do Office</h1>
+        <div>
+
+            <h1 class="toolbar-logo">To Do Office</h1>
             <hr>
 
-            {% include 'authentication/bar.html' %}
-            <hr>
-
-            {% include 'todo/new_task_fast.html' %}
-            <hr>
-
-            {% include 'folders/base.html' %}
-            <hr>
+            <div class="toolbar-main">
+                {% include 'authentication/bar.html' %}
+                <hr>
+                {% include 'todo/new_task_fast.html' %}
+                <hr>
+                {% include 'folders/base.html' %}
+                <hr>
+            </div>
 
         </div>
 
@@ -57,7 +64,7 @@
             <p id="null"></p>
         </div>
 
-    </div>
+    </div></div>
 
     <div class="container">
         

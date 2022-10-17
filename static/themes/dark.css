@@ -1,0 +1,45 @@
+:root {
+    /* --base-col-6: #ffffff;
+    --base-col-5: #d9d9d9;
+    --base-col-4: #cfcfcf;
+    --base-col-3: #7e7e7e;
+    --base-col-2: #6f6f6f;
+    --base-col-1: #5b5b5b;
+    --base-col-0: #3f3f3f; */
+
+    --base-col-0: #313131;
+    --base-col-1: #212121;
+    --base-col-2: #1a1a1a;
+    --base-col-3: #0e0e0e;
+    --base-col-4: #3d3d3d;
+    --base-col-5: #272727;
+    --base-col-6: #c9c9c9;
+
+    color: var(--base-col-6);
+
+    --soft-highlight-1: thistle;
+    --soft-highlight-2: lightsteelblue;
+
+    --highlight-2: skyblue;
+
+    --sel-tools-btn: mediumblue;
+    --sel-tools-txt: darkseagreen;
+
+    --selected-highlight: blue;
+
+    --scrollbar-thumb: black;
+
+    --folder-color0:  #FF8080; /* red     */
+    --folder-color1:  #FFBF80; /* orange  */
+    --folder-color2:  #FFFF80; /* yellow  */
+    --folder-color3:  #BFFF80; /* green 1 */
+    --folder-color4:  #80FF80; /* green 2 */
+    --folder-color5:  #80FFBF; /* cyan 1  */
+    --folder-color6:  #80FFBF; /* cyan 2  */
+    --folder-color7:  #80FFFF; /* blue 1  */
+    --folder-color8:  #80BFFF; /* blue 2  */
+    --folder-color9:  #8080FF; /* d blue  */
+    --folder-color10: #BF80FF; /* indigo  */
+    --folder-color11: #FF80FF; /* violet  */
+    --folder-color12: #FF80BF; /* pink    */
+}

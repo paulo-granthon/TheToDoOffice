@@ -1,0 +1,33 @@
+:root {
+    --base-col-0: #ffffff;
+    --base-col-1: #E6E6E6;
+    --base-col-2: #D6D6D6;
+    --base-col-3: #B1B1B1;
+    --base-col-4: #939393;
+    --base-col-5: #5b5b5b;
+    --base-col-6: #3f3f3f;
+
+    --soft-highlight-1: thistle;
+    --soft-highlight-2: lightsteelblue;
+
+    --highlight-2: skyblue;
+
+    --sel-tools-btn: mediumblue;
+    --sel-tools-txt: darkseagreen;
+
+    --selected-highlight: blue;
+
+    --folder-color0:  #FF8080; /* red     */
+    --folder-color1:  #FFBF80; /* orange  */
+    --folder-color2:  #FFFF80; /* yellow  */
+    --folder-color3:  #BFFF80; /* green 1 */
+    --folder-color4:  #80FF80; /* green 2 */
+    --folder-color5:  #80FFBF; /* cyan 1  */
+    --folder-color6:  #80FFBF; /* cyan 2  */
+    --folder-color7:  #80FFFF; /* blue 1  */
+    --folder-color8:  #80BFFF; /* blue 2  */
+    --folder-color9:  #8080FF; /* d blue  */
+    --folder-color10: #BF80FF; /* indigo  */
+    --folder-color11: #FF80FF; /* violet  */
+    --folder-color12: #FF80BF; /* pink    */
+}
