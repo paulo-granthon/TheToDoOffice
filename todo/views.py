@@ -30,10 +30,10 @@ class Index(TemplateView):
 
 
 # Returns Index / TaskList context: the tasks, folders, current folder, search input, task create form
-def get_context(request, context):
+def get_context(req, context):
 
     try:
-        user = request.user
+        user = req.user
 
         # if context already contains 'tasks', update the list
         # otherwise, create the list
@@ -62,13 +62,13 @@ def get_context(request, context):
 
     # if session contains a folder pk, get the folder object as 'folder'
     # otherwise, there is no current folder, just leave 'folder' as None
-    if 'current_folder' in request.session:
-        session_folder = request.session['current_folder']
+    if 'current_folder' in req.session:
+        session_folder = req.session['current_folder']
         try:
             folder = Folder.objects.all().get(pk=session_folder)
         except Folder.DoesNotExist:
             folder = None
-            request.session['current_folder'] = -1
+            req.session['current_folder'] = -1
 
     # if there's a current folder parameter in context, set its value
     # otherwise, add the parameter to context and set its value
@@ -82,7 +82,7 @@ def get_context(request, context):
         context['tasks'] = context['tasks'].filter(folder=folder)
 
     # get the search input if any
-    search_input = request.GET.get('search-area') or ''
+    search_input = req.GET.get('search-area') or ''
     # if search input is present, filter the tasks by its text
     if search_input:
         context['tasks'] = context['tasks'].filter(title__icontains=search_input)
@@ -93,7 +93,7 @@ def get_context(request, context):
     # pass the TaskForm as context
     context['fast_form'] = TaskFormFast()
 
-    context.update({'theme': 'dark'})
+    context.update({'theme': req.session['theme'] if 'theme' in req.session else 'light'})
 
     return context
 

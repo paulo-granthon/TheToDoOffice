@@ -7,6 +7,10 @@
     --base-col-5: #5b5b5b;
     --base-col-6: #3f3f3f;
 
+    --base-font-col: black;
+
+    /* color: var(--base-col-6); */
+
     --soft-highlight-1: thistle;
     --soft-highlight-2: lightsteelblue;
 

@@ -11,11 +11,13 @@
     --base-col-1: #212121;
     --base-col-2: #1a1a1a;
     --base-col-3: #0e0e0e;
-    --base-col-4: #3d3d3d;
+    --base-col-4: #525252;
     --base-col-5: #272727;
     --base-col-6: #c9c9c9;
 
-    color: var(--base-col-6);
+    --base-font-col: white;
+
+    /* color: var(--base-col-6); */
 
     --soft-highlight-1: thistle;
     --soft-highlight-2: lightsteelblue;

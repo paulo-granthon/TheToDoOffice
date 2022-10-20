@@ -1,6 +1,8 @@
 
 :root {
 
+    font-family: Roboto;
+
     --dark-green:   darkgreen;
     --darker-green: rgb(36, 56, 34);
 
@@ -313,6 +315,7 @@ body{
     justify-content: space-between;
 
     background: var(--base-col-0);
+    color: var(--base-font-col);
 
     outline: solid var(--dark-green) 3px;
     /* border: 2px outset darkslategrey; */
@@ -327,7 +330,7 @@ body{
 }
 
 .task-completed {
-    background: var(--base-col-6);
+    background: var(--base-col-4);
     outline-width: 1px;
     border: 3px solid var(--darker-green);
 }

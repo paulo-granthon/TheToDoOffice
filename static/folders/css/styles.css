@@ -124,9 +124,9 @@
 
 .folder-selected {
     cursor: unset;
-    background: whitesmoke;
+    background: var(--base-col-4);
 
-    outline: 4px blue groove;
+    outline: 4px var(--selected-highlight) groove;
 }
 
 .folder-btn {
@@ -137,7 +137,7 @@
 
     display: flex;
 
-    color: black;
+    color: var(--base-col-4);
 
     justify-content: center;
     align-items: center;

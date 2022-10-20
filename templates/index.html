@@ -6,11 +6,7 @@
     <meta charset="UTF-8">
     <title>TheToDoOffice</title>
 
-    {% if theme == "dark" %}
-    <link rel="stylesheet" href="{% static 'themes/dark.css' %}" />
-    {% else %}
-    <link rel="stylesheet" href="{% static 'themes/light.css' %}" />
-    {% endif%}
+    {% include 'theme.html' %}
 
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.6.0"></script>

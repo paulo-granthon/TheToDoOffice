@@ -30,6 +30,7 @@ urlpatterns = [
 htmx_urlpatterns = [
 
     path('close_modal', views.close_modal, name="close_modal"),
+    path('theme', views.switch_theme, name="theme"),
 
 ]
 

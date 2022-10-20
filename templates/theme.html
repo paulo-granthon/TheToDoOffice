@@ -1,0 +1,8 @@
+{% load static %}
+<div id="theme-link">
+    {% if theme == "dark" %}
+    <link rel="stylesheet" href="{% static 'themes/dark.css' %}" />
+    {% else %}
+    <link rel="stylesheet" href="{% static 'themes/light.css' %}" />
+    {% endif%}
+</div>
