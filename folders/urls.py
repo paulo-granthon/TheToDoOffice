@@ -21,7 +21,10 @@ htmx_urlpatterns = [
     path('f_del/<int:pk>/', views.f_del, name="f_del"),
 
     path('new_folder', views.f_new, name='new_folder'),
-    path('new-folder/', views.f_new_modal, name="new-folder-modal")
+    path('new-folder/', views.f_new_modal, name="new-folder-modal"),
+    path('new-folder/colors', views.f_new_modal_colors, name="new-folder-modal-colors"),
+
+    path('new-folder/sel-col/<int:color>', views.f_new_select_color, name="new-folder-modal-select-color"),
 ]
 
 urlpatterns += htmx_urlpatterns

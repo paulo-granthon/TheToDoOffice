@@ -70,6 +70,10 @@
     border-radius: 20%;
 }
 
+.folder-color-option-selected {
+    outline: 4px var(--base-col-6) solid;
+}
+
 .folder-color-select-current {
     display: flex;
     justify-content: center;
@@ -78,6 +82,8 @@
 }
 
 .new-folder-form-btn {
+    background: var(--base-col-2);
+    color: var(--base-col-6);
     width: 50%;
     height: 2.5em;
 }

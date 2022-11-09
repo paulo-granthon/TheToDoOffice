@@ -41,7 +41,7 @@ hr {
 .modal {
     border: 3px solid black;
 
-    background: white;
+    background: var(--base-col-0);
 
     padding: .25em;
 

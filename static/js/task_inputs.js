@@ -132,3 +132,11 @@ function folder_delete (element, event) {
         new Event("folder_delete")
     );
 }
+
+// new folder modal select color
+function new_folder_modal_select_color (element, event) {
+    event.stopPropagation();
+    element.dispatchEvent(
+        new Event("folder_sel_color")
+    )
+}

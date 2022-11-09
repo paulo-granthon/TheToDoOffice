@@ -52,7 +52,7 @@ def f_reload(req):
 
 def f_new(req):
     folder_name = req.POST.get('folder_name')
-    folder_color = req.POST.get('folder_color')
+    folder_color = req.session['new_folder_current_color'] if 'new_folder_current_color' in req.session else 0
     if len(folder_name) < 1: return f_reload(req)
     folder:Folder = Folder.objects.create(user=req.user, folder_name=folder_name, color=folder_color)
     return f_open(req, folder.pk)
@@ -60,17 +60,37 @@ def f_new(req):
 COLORS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 def f_new_modal(req):
-    next_folder_id = 0
+    next_folder_id = 1
     folders:list[Folder] = Folder.objects.filter(user=req.user)
+    
     folder = None
+    
     for folder in folders:
         if 'Nova Pasta' in folder.folder_name: next_folder_id += 1
-    next_folder_color = 0 if folder is None else folder.color + 1 % len(COLORS)
+    next_folder_color = (req.session['new_folder_current_color'] if 'new_folder_current_color' in req.session else 0) if folder is None else folder.color + 1 % len(COLORS)
+    
+    if 'new_folder_current_color' in req.session: req.session['new_folder_current_color'] = next_folder_color
+    else: req.session.update({'new_folder_current_color':next_folder_color})
+
+    if 'folder_colors' not in req.session: req.session.update({'folder_colors':COLORS})
+    
     return render(req, 'folders/modals/new-folder-modal.html', {
         'folder_colors':COLORS,
-        'next_folder_id':str(next_folder_id),
+        'next_folder_id':'' if next_folder_id == 1 else str(next_folder_id),
         'new_folder_current_color':next_folder_color
     })
+
+def f_new_modal_colors(req):
+    return render(req, 'folders/modals/new-folder-modal-colors.html', {})
+
+def f_new_select_color(req, color):
+    if 'new_folder_current_color' in req.session: req.session['new_folder_current_color'] = color
+    else: req.session.update({'new_folder_current_color':color})
+    return render(req, 'folders/modals/new-folder-modal-colors.html', {
+        'folder_colors':COLORS,
+        'new_folder_current_color':color
+    })
+
 
 #
 # def edit(req):

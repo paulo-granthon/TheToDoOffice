@@ -1,0 +1,16 @@
+<div class="folder-color-select-container" id="folder-color-select-container">
+    {% for color in folder_colors %}
+        {% if color is new_folder_current_color %}
+        <div class="folder-color-select-option folder-color-option-selected" style="background: var(--folder-color-{{ color }})">
+        {% else %}
+        <div class="folder-color-select-option" style="background: var(--folder-color-{{ color }})">
+        {% endif %}
+            <div style="width: 100%; height: 100%; cursor:pointer" onclick="new_folder_modal_select_color(this, event)"
+                hx-get="{% url 'new-folder-modal-select-color' color %}"
+                hx-target="#folder-color-select-container"
+                hx-trigger="folder_sel_color"
+                hx-swap="outerHTML"
+            ></div>
+        </div>
+    {% endfor %}
+</div>

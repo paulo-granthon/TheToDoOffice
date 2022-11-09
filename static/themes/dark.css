@@ -10,7 +10,7 @@
 
     --base-font-col: white;
 
-    /* color: var(--base-col-6); */
+    color: var(--base-col-6);
 
     --soft-highlight-1: thistle;
     --soft-highlight-2: lightsteelblue;
