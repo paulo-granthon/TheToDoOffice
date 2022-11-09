@@ -12,7 +12,10 @@
     >
     {% endif %}
 
-        Todas
+    <div style="display: flex; align-items: center; height: 1em; ">
+        <div class="folder-color-icon folder-color-all"></div>
+        <p style="padding-left: .25em;">Todas</p>
+    </div>
 
 {% else %}
 
@@ -28,7 +31,10 @@
     >
     {% endif %}
 
-        <p>{{ folder.folder_name }}</p>
+        <div style="display: flex; align-items: center; height: 1em; ">
+            <div class="folder-color-icon" style="background: var(--folder-color-{{ folder.color }})"></div>
+            <p style="padding-left: .25em;">{{ folder.folder_name }}</p>
+        </div>
 
         <!-- Delete button -->
         <div class="list-item-del folder-btn hover-only-btn" id="del-btn" onclick="folder_delete(this, event)"

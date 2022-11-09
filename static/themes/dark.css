@@ -24,17 +24,17 @@
 
     --scrollbar-thumb: black;
 
-    --folder-color-0:  #FF8080; /* red     */
-    --folder-color-1:  #FFBF80; /* orange  */
-    --folder-color-2:  #FFFF80; /* yellow  */
-    --folder-color-3:  #BFFF80; /* green 1 */
-    --folder-color-4:  #80FF80; /* green 2 */
-    --folder-color-5:  #80FFBF; /* cyan 1  */
-    --folder-color-6:  #80FFBF; /* cyan 2  */
-    --folder-color-7:  #80FFFF; /* blue 1  */
-    --folder-color-8:  #80BFFF; /* blue 2  */
-    --folder-color-9:  #8080FF; /* d blue  */
-    --folder-color-10: #BF80FF; /* indigo  */
-    --folder-color-11: #FF80FF; /* violet  */
-    --folder-color-12: #FF80BF; /* pink    */
+    --folder-color-0:  #AD4848; /* red     */
+    --folder-color-1:  #AD7E39; /* orange  */
+    --folder-color-2:  #ADAD29; /* yellow  */
+    --folder-color-3:  #76AD31; /* green 1 */
+    --folder-color-4:  #39AD39; /* green 2 */
+    --folder-color-5:  #36AD6F; /* cyan 1  */
+    --folder-color-6:  #368E97; /* cyan 2  */
+    --folder-color-7:  #27ADAD; /* blue 1  */
+    --folder-color-8:  #4287AD; /* blue 2  */
+    --folder-color-9:  #5252AD; /* d blue  */
+    --folder-color-10: #8E49AD; /* indigo  */
+    --folder-color-11: #AD42AD; /* violet  */
+    --folder-color-12: #B8457A; /* pink    */
 }

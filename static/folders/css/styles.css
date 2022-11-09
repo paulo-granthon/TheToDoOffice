@@ -92,7 +92,7 @@
     background: var(--base-col-3);
 
     margin: 0;
-    padding: 1.25em .25em .25em .5em;
+    padding: 1.25em .25em .25em 0em;
 
     transform: translateY(-1em);
 
@@ -117,6 +117,29 @@
 
     border-radius: .25em;
 
+}
+   
+.folder-color-icon {
+    width: 1em;
+    height: 1em;
+    
+    border: 2px black solid;
+    border-radius: 20%;
+
+}
+
+.folder-color-all {    
+    background: repeating-linear-gradient(
+        to bottom right,
+        var(--folder-color-0),
+        var(--folder-color-1),
+        var(--folder-color-2),
+        var(--folder-color-4),
+        var(--folder-color-6),
+        var(--folder-color-9),
+        var(--folder-color-10),
+        var(--folder-color-12)
+    );
 }
 
 .folder-list-item:hover {
