@@ -50,16 +50,27 @@ def f_reload(req):
     return render(req, 'todo/task_list.html', get_context(req, {'tasks': tasks}))
 
 
-def new_folder(req):
+def f_new(req):
     folder_name = req.POST.get('folder_name')
-    folder = Folder.objects.create(user=req.user, folder_name=folder_name)
-    for _ in range(20):
-        print(folder.pk)
+    folder_color = req.POST.get('folder_color')
+    if len(folder_name) < 1: return f_reload(req)
+    folder:Folder = Folder.objects.create(user=req.user, folder_name=folder_name, color=folder_color)
     return f_open(req, folder.pk)
 
+COLORS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-def new_folder_modal(req):
-    return render(req, 'folders/modals/new_folder_modal.html', {})
+def f_new_modal(req):
+    next_folder_id = 0
+    folders:list[Folder] = Folder.objects.filter(user=req.user)
+    folder = None
+    for folder in folders:
+        if 'Nova Pasta' in folder.folder_name: next_folder_id += 1
+    next_folder_color = 0 if folder is None else folder.color + 1 % len(COLORS)
+    return render(req, 'folders/modals/new-folder-modal.html', {
+        'folder_colors':COLORS,
+        'next_folder_id':str(next_folder_id),
+        'new_folder_current_color':next_folder_color
+    })
 
 #
 # def edit(req):

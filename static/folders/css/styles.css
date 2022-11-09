@@ -64,15 +64,18 @@
     
     margin: .25em;
 
-    background: red;
+    background: var(--folder-color-0);
 
     border: 2px black solid;
     border-radius: 20%;
 }
 
-/* .folder-color-select-option > input { 
-    transform: scale(2);
-} */
+.folder-color-select-current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 
 .new-folder-form-btn {
     width: 50%;

@@ -6,6 +6,7 @@ from django.urls import reverse
 class Folder (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='folders')
     folder_name = models.CharField(max_length=32)
+    color = models.SmallIntegerField()
 
     objects = models.Manager()
 

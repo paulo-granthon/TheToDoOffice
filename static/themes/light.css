@@ -21,17 +21,17 @@
 
     --selected-highlight: blue;
 
-    --folder-color0:  #FF8080; /* red     */
-    --folder-color1:  #FFBF80; /* orange  */
-    --folder-color2:  #FFFF80; /* yellow  */
-    --folder-color3:  #BFFF80; /* green 1 */
-    --folder-color4:  #80FF80; /* green 2 */
-    --folder-color5:  #80FFBF; /* cyan 1  */
-    --folder-color6:  #80FFBF; /* cyan 2  */
-    --folder-color7:  #80FFFF; /* blue 1  */
-    --folder-color8:  #80BFFF; /* blue 2  */
-    --folder-color9:  #8080FF; /* d blue  */
-    --folder-color10: #BF80FF; /* indigo  */
-    --folder-color11: #FF80FF; /* violet  */
-    --folder-color12: #FF80BF; /* pink    */
+    --folder-color-0:  #FF8080; /* red     */
+    --folder-color-1:  #FFBF80; /* orange  */
+    --folder-color-2:  #FFFF80; /* yellow  */
+    --folder-color-3:  #BFFF80; /* green 1 */
+    --folder-color-4:  #80FF80; /* green 2 */
+    --folder-color-5:  #80FFBF; /* cyan 1  */
+    --folder-color-6:  #80FFBF; /* cyan 2  */
+    --folder-color-7:  #80FFFF; /* blue 1  */
+    --folder-color-8:  #80BFFF; /* blue 2  */
+    --folder-color-9:  #8080FF; /* d blue  */
+    --folder-color-10: #BF80FF; /* indigo  */
+    --folder-color-11: #FF80FF; /* violet  */
+    --folder-color-12: #FF80BF; /* pink    */
 }

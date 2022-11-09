@@ -20,8 +20,8 @@ htmx_urlpatterns = [
 
     path('f_del/<int:pk>/', views.f_del, name="f_del"),
 
-    path('new_folder', views.new_folder, name='new_folder'),
-    path('new-folder/', views.new_folder_modal, name="new_folder_modal")
+    path('new_folder', views.f_new, name='new_folder'),
+    path('new-folder/', views.f_new_modal, name="new-folder-modal")
 ]
 
 urlpatterns += htmx_urlpatterns

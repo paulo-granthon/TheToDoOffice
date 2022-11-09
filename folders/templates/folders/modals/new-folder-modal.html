@@ -7,6 +7,7 @@
      hx-swap="outerHTML"
      hx-trigger="click target:#modal-wrapper"
 >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <div id="modal new-folder-modal" class="modal new-folder-modal">
 
@@ -17,10 +18,13 @@
                 hx-target="#content-area"
                 _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
         >
-            <input style="height: 2em;" type="text" name="folder_name" id="folder_name" placeholder="nome" autofocus autocomplete="off">
-            <div class="folder-color-select-container">
-                {% for i in '0123456'|make_list %}
-                    <div class="folder-color-select-option"></div>
+        <div style="display: flex; align-items: center">
+            <input style="height: 2em; width: 100%;" type="text" name="folder_name" id="folder_name" placeholder="Nome da pasta" value="Nova Pasta {{next_folder_id}}" autofocus autocomplete="off">
+            {% include 'folders\modals\new-folder-modal-rand-btn.html' %}
+        </div>
+        <div class="folder-color-select-container">
+                {% for color in folder_colors %}
+                    <div class="folder-color-select-option" style="background: var(--folder-color-{{ color }})"></div>
                 {% endfor %}
             </div>
             <hr>
