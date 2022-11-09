@@ -13,7 +13,11 @@
     ></div>
 
     <!-- folder name -->
-    <div class="folder-name-container">
+    {% if current_folder %}
+    <div class="folder-name-container" style="box-shadow: inset 0 -4px var(--folder-color-{{current_folder.color}})">
+    {% else %}
+    <div class="folder-name-container folder-name-container-all">
+    {% endif %}
         <div><h1 class="folder-name-text"></h1></div>
         <div>
             <h1 class="folder-name-text">
