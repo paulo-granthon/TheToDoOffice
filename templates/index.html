@@ -22,7 +22,15 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a6737b1fe6.js" crossorigin="anonymous"></script>
-
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 350,
+          'GRAD' 100,
+          'opsz' 20
+        }
+        </style>
 </head>
 <body>
 
@@ -34,15 +42,12 @@
         <div>
 
             <h1 class="toolbar-logo">To Do Office</h1>
-            <hr>
+            
+            {% include 'authentication/bar.html' %}
 
             <div class="toolbar-main">
-                {% include 'authentication/bar.html' %}
-                <hr>
                 {% include 'todo/new_task_fast.html' %}
-                <hr>
                 {% include 'folders/base.html' %}
-                <hr>
             </div>
 
         </div>

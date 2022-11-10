@@ -19,7 +19,7 @@
     --sel-tools-btn: mediumblue;
     --sel-tools-txt: darkseagreen;
 
-    --selected-highlight: blue;
+    --selected-highlight: rgb(55, 214, 55);
 
     --folder-color-0:  #FF8080; /* red     */
     --folder-color-1:  #FFBF80; /* orange  */

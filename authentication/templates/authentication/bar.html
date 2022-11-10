@@ -1,7 +1,22 @@
 {% if request.user.is_authenticated %}
-    <div style="display:flex; justify-content: space-between">
+    <div class="toolbar-section">
         <div>Welcome back, {{request.user|title}}!</div>
-        <a href="{% url 'logout' %}">Logout</a>
+        <div class="toolbar-btn-wrapper">
+
+            <div class="toolbar-btn" 
+                 hx-post="{% url 'theme' %}"
+                 hx-target="#theme-link"
+            ><span class="material-symbols-outlined">
+                dark_mode
+            </span></div>
+   
+            <a class="toolbar-btn"
+               href="{% url 'logout' %}"
+            ><span class="material-symbols-outlined">
+                logout
+            </span></a>
+
+        </div>
     </div>
 {% else %}    <div style="display:flex; justify-content: space-between">
     <div>Welcome! <a href="{% url 'login' %}">Login</a> to access your tasks from anywhere </div>

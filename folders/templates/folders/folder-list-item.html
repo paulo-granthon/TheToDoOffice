@@ -13,7 +13,9 @@
     {% endif %}
 
         <div style="display: flex; align-items: center; height: 1em; ">
-            <div class="folder-color-icon folder-color-all"></div>
+            <div class="folder-color-icon color-all">
+                <span class="material-symbols-outlined">edit</span>
+            </div>
             <p>Todas</p>
         </div>
 
@@ -32,7 +34,9 @@
     {% endif %}
 
         <div style="display: flex; align-items: center; height: 1em; ">
-            <div class="folder-color-icon" style="background: var(--folder-color-{{ folder.color }})"></div>
+            <div class="folder-color-icon" style="background: var(--folder-color-{{ folder.color }})">
+                <span class="material-symbols-outlined">edit</span>
+            </div>
             <p>{{ folder.folder_name }}</p>
         </div>
 

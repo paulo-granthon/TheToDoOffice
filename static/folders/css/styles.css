@@ -122,27 +122,36 @@
 }
    
 .folder-color-icon {
-    width: 1em;
-    height: 1em;
+    width: 1.125em;
+    height: 1.125em;
     
-    border: 2px black solid;
+    border: 1px var(--base-col-6) solid;
     border-radius: 20%;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.folder-color-all {    
-    background: repeating-linear-gradient(
-        to bottom right,
-        var(--folder-color-0),
-        var(--folder-color-1),
-        var(--folder-color-2),
-        var(--folder-color-4),
-        var(--folder-color-6),
-        var(--folder-color-9),
-        var(--folder-color-10),
-        var(--folder-color-12)
-    );
+.folder-color-icon > span {
+    display: none;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 20;
+    opacity: 60%;
+    cursor: pointer;
+
 }
+
+.folder-list-item:hover > div > .folder-color-icon > span {
+    display: unset;
+    color: white;
+}
+
+.folder-color-icon:hover > span {
+    font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 20;
+    opacity: 100%;
+    text-shadow: black 0px 0px 4px;
+}
+
 
 .folder-list-item:hover {
     background: grey;
@@ -161,7 +170,7 @@
     cursor: unset;
     background: var(--base-col-4);
 
-    outline: 4px var(--selected-highlight) groove;
+    outline: 2px var(--selected-highlight) solid;
 }
 
 .folder-selected > div > span {
@@ -173,14 +182,17 @@
 }
 
 .folder-btn {
-    height: 1.5em;
-    width: 1.5em;
+    height: .8em;
+    width: .75em;
 
-    border-radius: 4px;
+    /* border-radius: 4px; */
 
     display: flex;
 
-    color: var(--base-col-4);
+    color: var(--base-col-6);
+    background: transparent;
+
+    /* outline: 2px solid var(--base-col-6); */
 
     justify-content: center;
     align-items: center;
@@ -188,7 +200,11 @@
 }
 
 .folder-btn:hover {
-    color: white;
+    color: var(--base-col-0);
+}
+
+.list-item-del:hover {
+    box-shadow: rgb(255, 130, 130) 0 0 8px 0 ;
 }
 
 .folder-list-item:hover > .folder-btn {
