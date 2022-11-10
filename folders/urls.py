@@ -25,6 +25,8 @@ htmx_urlpatterns = [
     path('new-folder/colors', views.f_new_modal_colors, name="new-folder-modal-colors"),
 
     path('new-folder/sel-col/<int:color>', views.f_new_select_color, name="new-folder-modal-select-color"),
+    path('new-folder/sel-col-rand', views.f_new_rand_col, name='f_new_rand_col'),
+    path('new-folder/sel-col-update', views.f_new_update_selected, name='f_new_update_selected'),
 ]
 
 urlpatterns += htmx_urlpatterns

@@ -91,7 +91,12 @@ def f_new_select_color(req, color):
         'new_folder_current_color':color
     })
 
+def f_new_rand_col(req):
+    from random import randint
+    return f_new_select_color(req, randint(0, 12))
 
+def f_new_update_selected(req):
+    return render(req, 'folders/modals/new-folder-modal-color-selected.html', {'new_folder_current_color':req.session['new_folder_current_color']})
 #
 # def edit(req):
 #     model = Folder

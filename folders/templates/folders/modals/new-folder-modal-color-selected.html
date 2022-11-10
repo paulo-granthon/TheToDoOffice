@@ -1,6 +1,18 @@
-<div class="folder-color-select-option folder-color-select-current" 
+<div class="folder-color-select-option folder-color-select-current"
+        id="folder-color-select"
         style="background: var(--folder-color-{{new_folder_current_color}})"
+        hx-get="{% url 'f_new_rand_col' %}"
+        hx-target="#folder-color-select-container"
+        hx-swap="outerHTML"
+        _="on htmx:afterRequest trigger update on .folder-col-sel-cur-update"
     >
+    <div
+        class="folder-col-sel-cur-update"
+        hx-get="{% url 'f_new_update_selected' %}"
+        hx-target="#folder-color-select"
+        hx-swap="outerHTML"
+        hx-trigger="update"
+    ></div>
     <input type="text" style="display:none" name="folder_color" id="folder_color" value="{{new_folder_current_color}}" readonly>
     <span class="material-symbols-outlined" style="color: black; user-select: none">shuffle</span>
 </div>

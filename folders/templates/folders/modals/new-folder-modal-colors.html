@@ -10,6 +10,7 @@
                 hx-target="#folder-color-select-container"
                 hx-trigger="folder_sel_color"
                 hx-swap="outerHTML"
+                _="on htmx:afterRequest trigger update on .folder-col-sel-cur-update"
             ></div>
         </div>
     {% endfor %}
