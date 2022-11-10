@@ -108,6 +108,8 @@
 .folder-list-item {
     cursor: pointer;
 
+    height: 1.25em;
+
     margin: .25em .125em .25em .25em;
     padding: .125em .25em;
 
@@ -147,11 +149,12 @@
     box-shadow: black 1px 1px 1px 1px;
 }
 
-.folder-list-item > p {
+.folder-list-item > div > p {
     padding: 0;
     margin: 0;
     max-width: 80%;
     line-height: 92%;
+    padding-left: .25em;
 }
 
 .folder-selected {
@@ -159,6 +162,14 @@
     background: var(--base-col-4);
 
     outline: 4px var(--selected-highlight) groove;
+}
+
+.folder-selected > div > span {
+    cursor: pointer;
+}
+
+.folder-selected > div > p {
+    cursor: default;
 }
 
 .folder-btn {
