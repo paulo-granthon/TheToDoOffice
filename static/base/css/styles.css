@@ -93,8 +93,6 @@ body{
     background: var(--base-col-0);
     color: var(--sel-tools-txt);
 
-    font-weight: bold;
-
     display: flex;
     text-align: center;
     justify-content: center;
@@ -110,7 +108,17 @@ body{
 }
 
 .toolbar-btn > span {
+    font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 20;
     font-size: 100%;
+}
+
+.toolbar-btn:hover > span {
+    color: var(--base-col-0)
+}
+
+.toolbar-btn:hover {
+    background: var(--base-col-6);
+    box-shadow: var(--base-col-6) 0 0 4px 2px;
 }
 
 .toolbar-main {
@@ -411,6 +419,19 @@ body{
 
 }
 
+.task-outline:has(.task-completed) {
+    height: 1.5em;
+    opacity: 80%;
+}
+
+.task-outline.task-selected {
+    /* cursor: unset; */
+    /* background: var(--base-col3)smoke; */
+
+    box-shadow: var(--selected-highlight) 0 0 8px 4px;
+    opacity: 100%;
+}
+
 .task {
     min-width: 12em;
     height: 2em;
@@ -452,11 +473,11 @@ body{
 }
 
 .task-completed {
+    height: 1.5em;
     background: var(--base-col-4);
     color: var(--base-col-2);
     outline: 2px solid var(--base-col-5);
 }
-
 .task-complete-box {
     height: 1.25em;
     width: 1.25em;
@@ -514,25 +535,38 @@ body{
 .task-btn {
     height: 1.5em;
     width: 1.5em;
-    margin: .25em;
+    margin: .125em;
 
-    border-radius: 4px;
-
+    background: transparent;
+    color: var(--base-col-0);
+    
     display: flex;
-
+    
     justify-content: center;
     align-items: center;
+
+    border-radius: 4px;
 
     cursor: pointer;
     align-self: center;
 
 }
 
+.task:hover > .task-btn-wrapper > .hover-only-btn {
+    opacity: 100%;
+    color: var(--base-col-6);
+}
+
 .hover-only-btn {
     opacity: 0;
-    
-    background: var(--base-col-1);
-    box-shadow: inset var(--base-col-6) 0 0 1px;
+}
+
+.hover-only-btn:hover {
+    box-shadow: white 0 0 8px 0;
+}
+
+.hover-only-btn:hover > span {
+    color: var(--base-col-0);
 }
 
 .task-move-btn:hover {
@@ -541,17 +575,6 @@ body{
 
 .list-item-del:hover {
     background: red;
-}
-
-.task:hover > .task-btn-wrapper > .hover-only-btn {
-    opacity: 100%;
-}
-
-.task-selected {
-    /* cursor: unset; */
-    /* background: var(--base-col3)smoke; */
-
-    box-shadow: var(--selected-highlight) 0 0 8px 4px;
 }
 
 .search-box {

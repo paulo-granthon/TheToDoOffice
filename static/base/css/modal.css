@@ -61,5 +61,24 @@ hr {
 }
 
 .task-change-folder-modal {
+    min-width: 50vw;
+    padding: 1em;
+    border-radius: 16px;
+}
 
+.task-change-folder-modal > ul{
+    margin: .5em;
+    padding: 0;
+}
+
+.task-change-folder-li {
+    background: var(--base-col-1);
+    cursor: pointer;
+    margin: .25em;
+    border-radius: 4px;
+}
+
+.task-change-folder-li:hover {
+    background: var(--base-col-2);
+    box-shadow: white 0 0 4px 2px;
 }

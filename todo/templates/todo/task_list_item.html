@@ -12,7 +12,7 @@
         <div class="task-data-wrapper">
             
             <!-- Completed Checkbox -->
-            <div id="task-complete-box" class="task-complete-box task-btn" onclick="task_complete(this, event)"
+            <div id="task-complete-box" class="task-btn task-complete-box" onclick="task_complete(this, event)"
                 hx-post="{% url 'complete' task.pk %}"
                 hx-target="#null"
                 hx-swap="innerHTML"
@@ -77,7 +77,7 @@
             
             {% if allow_move_btn is True %}
             <!-- Move / Change Folder button -->
-            <div id="task-move-button" class="task-move-btn task-btn hover-only-btn" onclick="task_move(this, event)"
+            <div id="task-move-button" class="hover-only-btn task-btn task-move-btn" onclick="task_move(this, event)"
                 hx-get="{% url 'move-modal' task.pk %}"
                 hx-trigger="task_move"
                 hx-target="#modal-wrapper"
@@ -91,7 +91,7 @@
             {% endif %}
 
             <!-- Delete button -->
-            <div class="list-item-del task-btn hover-only-btn" id="del-btn" onclick="task_delete(this, event)"
+            <div class="hover-only-btn task-btn list-item-del" id="del-btn" onclick="task_delete(this, event)"
                 hx-delete="{% url 'del' task.id %}"
                 hx-target="#content-area"
                 hx-trigger="confirmed"
