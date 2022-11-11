@@ -200,7 +200,8 @@ def t_del(req, pk):
     Task.objects.get(pk=pk).delete()
     if 'sel_tasks' in req.session and pk in req.session['sel_tasks']: 
         print(f'req.session["sel_tasks"]: {req.session["sel_tasks"]} contains {pk}')
-        req.session['sel_tasks'].remove(pk)
+        # req.session['sel_tasks'].remove(pk)
+        req.session['sel_tasks'] = []       # TODO !!!! bandaid fix
         print(f'req.session["sel_tasks"]: {req.session["sel_tasks"]} removed {pk}')
     else: print(f'req.session["sel_tasks"] does NOT contain {pk}')
     return tasks(req)
@@ -314,7 +315,16 @@ def t_sel_all(req):
 
 # Checks / Unchecks the selected Tasks' "complete"
 def t_sel_complete (req):
-    pass
+    if 'sel_tasks' in req.session:
+        tasks = [Task.objects.get(pk=pk) for pk in req.session['sel_tasks']]
+        complete = False
+        for task in tasks:
+            if not task.completed: complete = True
+        print(f'should complete? {complete}')
+        for task in tasks:
+            task.completed = complete
+            task.save()
+    return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
 # Deletes the selected Tasks

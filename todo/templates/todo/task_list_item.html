@@ -93,7 +93,7 @@
             {% endif %}
 
             <!-- Delete button -->
-            <div class="hover-only-btn task-btn list-item-del" id="del-btn" onclick="task_delete(this, event)"
+            <div class="hover-only-btn task-btn list-item-del" id="task-del-btn" onclick="task_delete(this, event)"
                 hx-delete="{% url 'del' task.id %}"
                 hx-target="#content-area"
                 hx-trigger="confirmed"
@@ -103,8 +103,7 @@
                     showDenyButton: true,
                     confirmButtonText: 'Yes, delete it!'
                 })
-                if result.isConfirmed trigger confirmed then wait 1s then call super_update()
-                "
+                if result.isConfirmed trigger confirmed"
             >
                 <span class="material-symbols-outlined">
                     delete

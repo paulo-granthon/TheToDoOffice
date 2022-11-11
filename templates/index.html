@@ -72,7 +72,8 @@
         <div class="sel-actions" id="sel-actions"
                 hx-get="{% url 'sel-actions-update' %}"
                 hx-target="#sel-actions"
-                hx-trigger="sel_actions_update"
+                hx-trigger="sel_actions_update, confirmed from:task-del-btn"
+                _="on htmx:afterRequest log 'sel-actions update'"
         >
             {% if request.sel_tasks.count > 0 %}
                 {% include 'todo/sel_actions.html' %}
