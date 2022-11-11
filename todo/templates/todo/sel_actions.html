@@ -2,6 +2,10 @@
 <div class="sel-actions-list">
     
     <div class="sel-actions-btn material-symbols-outlined"
+         hx-get="{% url 'sel-all' %}"
+         hx-target="#null"
+         hx-swap="innerHTML"
+         _="on htmx:afterRequest trigger update on .sel-tasks-super-updater-manager"
     >filter_none</div>
 
     <div class="sel-actions-btn material-symbols-outlined"

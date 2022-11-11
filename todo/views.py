@@ -272,27 +272,51 @@ def t_sel_multi(req, pk):
 #region selected Task actions
 
 def t_sel_actions (req):
-    if 'sel_tasks' in req.session:
-        print('sel_tasks is in session')
-        if len(req.session['sel_tasks']) > 0: 
-            print('sel_tasks has somethig')
-            return render(req, 'todo/sel_actions.html', {})
-        else: print('sel_tasks is EMPTY')
-    else: print('sel_tasks is NOT in session')
-
+    if 'sel_tasks' in req.session and len(req.session['sel_tasks']) > 0: 
+        return render(req, 'todo/sel_actions.html', {})
     return render(req, 'todo/sel_actions_none.html', {})
 
+def t_sel_all(req):
+    # from folders.views import f_reload
+    folder = Folder.objects.all().get(pk=req.session['current_folder'])
+
+    if 'sel_tasks' not in req.session:
+        print(f'req.session["sel_tasks"] had NO shit: empty')
+        req.session.update({'sel_tasks': []})
+        return HttpResponse(status=201)
+        # return f_reload(req)
+
+    if len(req.session['sel_tasks']) > 0:
+        print(f'req.session["sel_tasks"] already had shit: {req.session["sel_tasks"]}')
+        req.session['sel_tasks'] = []
+        return HttpResponse(status=201)
+        # return f_reload(req)
+
+    try:
+        tasks = Task.objects.filter(folder=folder)
+    except:
+        tasks = Task.objects.filter(user=req.user)
+
+    # print(f'tasks: {list(tasks)}')
+    lst = [t.pk for t in list(tasks)]
+    print(f'lst: {lst}')
+
+    req.session['sel_tasks'] = lst
+
+    return HttpResponse(status=200)
+    # return f_reload(req)
+
 # Checks / Unchecks the selected Tasks' "complete"
-def sel_complete (req):
+def t_sel_complete (req):
     pass
 
 
 # Deletes the selected Tasks
-def sel_del (req):
+def t_sel_del (req):
     pass
 
 
-def sel_move (req, pk=-1):
+def t_sel_move (req, pk=-1):
     if pk < 0:
         folder = None
     else:
@@ -331,5 +355,7 @@ def move_modal(req, pk):
 def sel_move_modal(req):
     return render(req, 'todo/modals/sel_move_modal.html', {'folders':Folder.objects.filter(user=req.user)})
 
+def t_sel_super_update(req):
+    return render(req, 'todo/sel_tasks_super_updater.html', {})
 
 #endregion

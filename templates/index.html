@@ -62,7 +62,7 @@
                 href="https://linkedin.com/in/paulo-granthon/"
                 target="_blank" rel="noopener noreferrer"
             ><i class="fa-brands fa-linkedin"></i></a></div>
-            <p id="null"></p>
+            <div style="position: absolute: bottom: -100vh"><p id="null"></p></div>
         </div>
 
     </div></div>
@@ -74,7 +74,11 @@
                 hx-target="#sel-actions"
                 hx-trigger="sel_actions_update"
         >
-            {% include 'todo/sel_actions_none.html' %}
+            {% if request.sel_tasks.count > 0 %}
+                {% include 'todo/sel_actions.html' %}
+            {% else %}
+                {% include 'todo/sel_actions_none.html' %}
+            {% endif %}
         </div>
 
         <!--content area where all the tasks are shown -->

@@ -1,7 +1,23 @@
 {% if task.folder %}
-<div class="task-outline" style="background: var(--folder-color-{{task.folder.color}})">
+<div class="task-outline" style="background: var(--folder-color-{{task.folder.color}})"
+     _="on check_if_selected(sel_tasks)
+        if sel_tasks.length > 0 and sel_tasks contains {{task.pk}}
+            add .task-selected to me
+        else
+            remove .task-selected from me
+        end
+     "
+>
 {% else %}
-<div class="task-outline color-all">
+<div class="task-outline color-all"
+     _="on check_if_selected(sel_tasks)
+        if sel_tasks.length > 0 and sel_tasks contains {{task.pk}}
+            add .task-selected to me
+        else
+            remove .task-selected from me
+        end
+     "
+>
 {% endif%}
     {% if task.completed %}
     <div class="task task-completed" id="task_{{ task.pk }}" onclick="task_select(this, event)">

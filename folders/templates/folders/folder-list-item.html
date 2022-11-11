@@ -9,6 +9,7 @@
     <div class="folder-list-item"
          hx-get="{% url 'all' %}"
          hx-target="#content-area"
+         _="on htmx:afterRequest trigger sel_actions_update on .sel-actions then call event.stopPropagation()"
     >
     {% endif %}
 
@@ -30,6 +31,7 @@
     <div class="folder-list-item"
          hx-get="{% url 'open' folder.pk %}"
          hx-target="#content-area"
+         _="on htmx:afterRequest trigger sel_actions_update on .sel-actions then call event.stopPropagation()"
     >
     {% endif %}
 
@@ -53,7 +55,9 @@
                  confirmButtonText: 'Yes, delete it!'
              })
              if result.isConfirmed trigger confirmed
-             add_listeners_to_task()"
+             add_listeners_to_task()
+             trigger sel_actions_update on .sel-actions then call event.stopPropagation()
+            "
         >
             <span class="material-symbols-outlined">
                 delete

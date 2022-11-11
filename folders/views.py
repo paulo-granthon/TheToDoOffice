@@ -32,22 +32,17 @@ def f_open(req, pk=-1):
     except Folder.DoesNotExist:
         return f_all(req)
 
-    print("open folder | folder_name: " + folder.folder_name)
+    # print("open folder | folder_name: " + folder.folder_name)
+    if 'sel_tasks' not in req.session: req.session.update({'sel_tasks': []})
+    else: req.session['sel_tasks'] = []
 
     return render(req, 'todo/task_list.html', get_context(req, {'tasks': tasks}))
 
 
 def f_reload(req):
-    if 'current_folder' not in req.session or req.session['current_folder'] > 0:
+    if 'current_folder' not in req.session or req.session['current_folder'] < 0:
         return f_all(req)
-
-    try:
-        folder = Folder.objects.get(pk=req.session['current_folder'])
-    except Folder.DoesNotExist:
-        return f_all(req)
-
-    tasks = Task.objects.filter(user=req.user).filter(folder=folder)
-    return render(req, 'todo/task_list.html', get_context(req, {'tasks': tasks}))
+    return f_open(req, req.session['current_folder'])
 
 
 def f_new(req):
