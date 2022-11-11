@@ -14,7 +14,7 @@
 
         <ul>
             <div class="task-change-folder-li"
-                    hx-get="{% url 'sel_move_to' %}"
+                    hx-get="{% url 'sel-move' %}"
                     hx-target="#content-area"
                     _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
             >
@@ -22,7 +22,7 @@
             </div>
             {% for folder in folders %}
                 <div class="task-change-folder-li"
-                        hx-get="{% url 'sel_move_to' folder.pk %}"
+                        hx-get="{% url 'sel-move' folder.pk %}"
                         hx-target="#content-area"
                         _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
                 >

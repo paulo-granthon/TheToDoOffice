@@ -308,24 +308,43 @@ body{
 
 }
 
-.sel-tools {
+.sel-actions {
+    position:absolute;
+    
+    width: 100%;
+    top: .75em;
+    right: 2em;
+
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+        
+    
+}
+
+.sel-actions-list {
     margin: 0 1em;
 
-    position: relative;
+    width: 100%;
+
+    /* position: relative; */
     /* top: .25em; */
-    right: 0;
+    /* right: 0; */
 
     /* background: var(--base-col-0); */
 
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
     align-items: center;
 
-    width: 2em;
+    /* width: 2em; */
     height: 2em;
 }
 
-.sel-tools-btn {
+.sel-actions-btn {
     
     width: 1em;
     height: 1em;
@@ -333,7 +352,7 @@ body{
     margin: .25em;
 
     background: var(--base-col-0);
-    color: var(--sel-tools-txt);
+    color: var(--base-col-6);
 
     font-weight: bold;
     font-size: 4vh;
@@ -341,10 +360,18 @@ body{
     display: flex;
     text-align: center;
     justify-content: center;
+    align-items: center;
+
+    border-radius: 8px;
 
     cursor: pointer;
 }
 
+.sel-actions-btn:hover {
+    background: var(--base-col-6);
+    color: var(--base-col-0);
+    box-shadow: var(--base-col-6) 0 0 4px 2px;
+}
 
 /* tasks */
 .tasks-container {
@@ -449,7 +476,7 @@ body{
     border-radius: 6px;
     outline: 2px solid var(--base-col-6);
 
-    z-index: 10;
+    z-index: 1;
 
 }
 
@@ -497,7 +524,6 @@ body{
 .check-box {
     opacity: 0;
     z-index: 1;
-    font-size: xxx-large;
     font-weight: bolder;
     color: var(--task-check);
     text-shadow: greenyellow -1px 1px 2px;
@@ -511,6 +537,10 @@ body{
     outline: 3px solid var(--base-col-0);
     background: var(--base-col-4);
     box-shadow: none;
+}
+.task-completed > .task-data-wrapper > .task-complete-box > span {
+    font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 100, 'opsz' 32;
+    font-size: xx-large;
 }
 
 .task-completed > .task-data-wrapper > .task-text {

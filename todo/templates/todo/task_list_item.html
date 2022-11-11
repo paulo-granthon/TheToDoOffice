@@ -23,9 +23,9 @@
                 "
             >
                 {% if task.completed %}
-                <span id="checkbox" class="material-symbols-outlined check-box check-box-active"> done </span>
+                <span id="checkbox" class="material-symbols-outlined check-box check-box-active">done</span>
                 {% else %}
-                <span id="checkbox" class="material-symbols-outlined check-box"> done </span>
+                <span id="checkbox" class="material-symbols-outlined check-box">done</span>
                 {% endif %}
             </div>
 
@@ -58,6 +58,7 @@
                     else
                         add .task-selected to closest .task-outline
                     end
+                    then trigger sel_actions_update on .sel-actions then call event.stopPropagation()
                 "
             ></div>
 
@@ -68,7 +69,9 @@
                 hx-target="#null"
                 hx-swap="innerHTML"
                 hx-trigger="task_select_multi"
-                _="on htmx:afterRequest toggle .task-selected on closest .task-outline"
+                _="on htmx:afterRequest toggle .task-selected on closest .task-outline
+                then trigger sel_actions_update on .sel-actions then call event.stopPropagation()
+                "
             ></div>
         </div>
 

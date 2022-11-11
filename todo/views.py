@@ -271,6 +271,16 @@ def t_sel_multi(req, pk):
 
 #region selected Task actions
 
+def t_sel_actions (req):
+    if 'sel_tasks' in req.session:
+        print('sel_tasks is in session')
+        if len(req.session['sel_tasks']) > 0: 
+            print('sel_tasks has somethig')
+            return render(req, 'todo/sel_actions.html', {})
+        else: print('sel_tasks is EMPTY')
+    else: print('sel_tasks is NOT in session')
+
+    return render(req, 'todo/sel_actions_none.html', {})
 
 # Checks / Unchecks the selected Tasks' "complete"
 def sel_complete (req):
@@ -292,11 +302,14 @@ def sel_move (req, pk=-1):
             return HttpResponse(status=404)
     if 'sel_tasks' not in req.session or len(list(req.session['sel_tasks'])) < 1:
         return HttpResponse(status=201)
-    tasks = list(req.session['sel_tasks'])
-    for task in tasks:
+    task_pks = list(req.session['sel_tasks'])
+    print(task_pks)
+    for task_pk in task_pks:
+        print(task_pk)
+        task = Task.objects.get(pk=task_pk)
         task.folder = folder
         task.save()
-    req.session['sel_tasks'] = tasks
+    req.session['sel_tasks'] = []
     return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
@@ -315,11 +328,7 @@ def move_modal(req, pk):
     return render(req, 'todo/modals/move_modal.html', {'folders':Folder.objects.filter(user=req.user), 'target_task':task})
 
 
-def sel_move_modal(req, pk):
-    try:
-        task = Task.objects.get(pk=pk)
-    except Task.DoesNotExist:
-        return HttpResponse(status=404)
+def sel_move_modal(req):
     return render(req, 'todo/modals/sel_move_modal.html', {'folders':Folder.objects.filter(user=req.user)})
 
 

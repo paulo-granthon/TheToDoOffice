@@ -30,6 +30,7 @@ htmx_urlpatterns = [
     path('sel_multi/<int:pk>/', views.t_sel_multi, name='sel-multi'),
 
     # selected actions
+    path('sel_actions_update/', views.t_sel_actions, name="sel-actions-update"),
     path('sel_complete/<int:pk>/', views.sel_complete, name='sel-complete'),
     path('sel_move_to/<int:pk>', views.sel_move, name='sel-move'),          
     path('sel_move_to/-1', views.sel_move, name='sel-move'),          

@@ -44,7 +44,7 @@ hr {
     background: var(--base-col-0);
 
     padding: .25em;
-
+    z-index: 100;
 }
 
 .modal-title {
