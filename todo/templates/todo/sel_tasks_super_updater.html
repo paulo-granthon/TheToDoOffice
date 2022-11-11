@@ -1,5 +1,5 @@
 <div id="sel-tasks-super-updater"
-     _="on load log 'super update' then trigger sel_actions_update on .sel-actions then trigger check_if_selected(sel_tasks:{{request.session.sel_tasks}}) on .task-outline
-        then log 'super update'
+     _="on load log 'super update before' then trigger sel_actions_update on .sel-actions then trigger check_if_selected(sel_tasks:{{request.session.sel_tasks}}) on .task-outline
+        then log 'super update after'
         then console.log({{request.session.sel_tasks}})
 "></div>

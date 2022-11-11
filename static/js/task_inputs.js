@@ -140,3 +140,11 @@ function new_folder_modal_select_color (element, event) {
         new Event("folder_sel_color")
     )
 }
+
+function super_update () {
+    document.querySelector("#sel-tasks-super-updater").dispatchEvent(
+        new Event("update")
+    )
+    // htmx.trigger("#sel-tasks-super-updater", "update")
+    console.log("iaushdiouashopdiuhasioudhiouh")
+}

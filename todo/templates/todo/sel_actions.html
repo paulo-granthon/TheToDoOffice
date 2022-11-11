@@ -9,7 +9,21 @@
     >filter_none</div>
 
     <div class="sel-actions-btn material-symbols-outlined"
-    >delete_sweep</div>
+         hx-post="{% url 'sel-del' %}"
+         hx-target="#tasks-wrapper"
+         hx-trigger="confirmed"
+         _="on click log 'selected delete event !!!!!!!!!!' then call
+         Swal.fire({
+            title: 'Delete the selected tasks?',
+            text:'Are you sure?',
+             showDenyButton: true,
+             confirmButtonText: 'Yes, delete them please!'
+         })
+         if result.isConfirmed trigger confirmed
+         add_listeners_to_task()
+         trigger sel_actions_update on .sel-actions then call event.stopPropagation()
+        "
+     >delete_sweep</div>
 
     <div class="sel-actions-btn material-symbols-outlined"
          hx-get="{% url 'sel-move-modal' %}"
@@ -18,6 +32,7 @@
     >drive_file_move</div>
 
     <div class="sel-actions-btn material-symbols-outlined"
+         hx-get="{% url 'sel-complete' %}"
     >done_all</div>
 
 </div>

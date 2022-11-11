@@ -100,6 +100,7 @@ def get_context(req, context):
 
 # Returns a render of the Task List with updated context
 def tasks(req):
+    print(f'tasks() -- {req.session["sel_tasks"]}')
     return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
@@ -197,6 +198,11 @@ def t_move (req, pk, pk2=-1):
 # Deletes a Task
 def t_del(req, pk):
     Task.objects.get(pk=pk).delete()
+    if 'sel_tasks' in req.session and pk in req.session['sel_tasks']: 
+        print(f'req.session["sel_tasks"]: {req.session["sel_tasks"]} contains {pk}')
+        req.session['sel_tasks'].remove(pk)
+        print(f'req.session["sel_tasks"]: {req.session["sel_tasks"]} removed {pk}')
+    else: print(f'req.session["sel_tasks"] does NOT contain {pk}')
     return tasks(req)
 
 
@@ -313,7 +319,11 @@ def t_sel_complete (req):
 
 # Deletes the selected Tasks
 def t_sel_del (req):
-    pass
+    if 'sel_tasks' in req.session:
+        for pk in req.session['sel_tasks']:
+            Task.objects.get(pk=pk).delete()
+        req.session['sel_del'] = []
+    return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
 def t_sel_move (req, pk=-1):

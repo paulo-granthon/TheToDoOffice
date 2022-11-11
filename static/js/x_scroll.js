@@ -15,8 +15,3 @@ function x_scroll_apply() {
     });
     console.log("scroll added to element")
 }
-
-function refresh_folders () {
-
-
-}
