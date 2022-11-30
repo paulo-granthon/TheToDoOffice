@@ -1,0 +1,17 @@
+<div class="folder-color-select-container folder-edit-col-modal" id="folder-color-select-container">
+    {% for color in folder_colors %}
+        {% if color is folder.color %}
+        <div class="folder-color-select-option folder-color-option-selected" style="background: var(--folder-color-{{ color }})">
+        {% else %}
+        <div class="folder-color-select-option" style="background: var(--folder-color-{{ color }})">
+        {% endif %}
+            <div class="edit-folder-col-btn" style="width: 100%; height: 100%; cursor:pointer"
+                hx-get="{% url 'set-folder-color' folder.pk color %}"
+                hx-target="#folders-wrapper"
+                hx-trigger="folder_sel_color"
+                hx-swap="outerHTML"
+                _="on htmx:afterRequest console.log(me)"
+            ></div>
+        </div>
+    {% endfor %}
+</div>

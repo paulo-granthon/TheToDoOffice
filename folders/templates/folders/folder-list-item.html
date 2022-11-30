@@ -1,4 +1,5 @@
 {% if folder is None %}
+<div id="folder_all">
 
     {% if selected is True %}
 
@@ -9,18 +10,16 @@
     <div class="folder-list-item"
          hx-get="{% url 'all' %}"
          hx-target="#content-area"
-         _="on htmx:afterRequest trigger sel_actions_update on .sel-actions then call event.stopPropagation()"
     >
     {% endif %}
 
         <div style="display: flex; align-items: center; height: 1em; ">
-            <div class="folder-color-icon color-all">
-                <span class="material-symbols-outlined">edit</span>
-            </div>
+            <div class="folder-color-icon color-all"></div>
             <p>Todas</p>
         </div>
 
 {% else %}
+<div id="folder_{{folder.pk}}">
 
     {% if selected is True %}
 
@@ -31,13 +30,20 @@
     <div class="folder-list-item"
          hx-get="{% url 'open' folder.pk %}"
          hx-target="#content-area"
-         _="on htmx:afterRequest trigger sel_actions_update on .sel-actions then call event.stopPropagation()"
     >
     {% endif %}
 
+
         <div style="display: flex; align-items: center; height: 1em; ">
-            <div class="folder-color-icon" style="background: var(--folder-color-{{ folder.color }})">
-                <span class="material-symbols-outlined">edit</span>
+            <div class="folder-color-icon" style="background: var(--folder-color-{{ folder.color }})" onclick="folder_edit(this, event)"
+                 hx-get="{% url 'edit-folder-color' folder.pk %}"
+                 hx-target="#folders-wrapper"
+                 hx-swap="outerHTML"
+                 _="on htmx:afterRequest trigger update on #tasks-super-update"
+            >
+                <span class="material-symbols-outlined">
+                    autorenew
+                </span>
             </div>
             <p>{{ folder.folder_name }}</p>
         </div>
@@ -55,9 +61,7 @@
                  confirmButtonText: 'Yes, delete it!'
              })
              if result.isConfirmed trigger confirmed
-             add_listeners_to_task()
-             trigger sel_actions_update on .sel-actions then call event.stopPropagation()
-            "
+             add_listeners_to_task()"
         >
             <span class="material-symbols-outlined">
                 delete
@@ -68,3 +72,4 @@
 
 </div>
 
+</div>

@@ -58,6 +58,10 @@
     flex-wrap: wrap;
 }
 
+.folder-edit-col-modal {
+    transform: scale(50%) translateZ(-2em);
+}
+
 .folder-color-select-option {
     width: 2em;
     height: 2em;
@@ -131,11 +135,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    user-select: none;
 }
 
 .folder-color-icon > span {
     display: none;
-    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 20;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 100, 'opsz' 20;
     opacity: 60%;
     cursor: pointer;
 
@@ -147,7 +153,7 @@
 }
 
 .folder-color-icon:hover > span {
-    font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 20;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 100, 'opsz' 20;
     opacity: 100%;
     text-shadow: black 0px 0px 4px;
 }

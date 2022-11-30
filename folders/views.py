@@ -100,6 +100,21 @@ def f_new_update_selected(req):
 #
 #
 
+def f_edit_color (req, pk):
+    return f_set_color(req, pk, (Folder.objects.get(pk=pk).color + 1) % len(COLORS))
+    return render(req, 'folders/modals/edit-folder-modal.html', {
+        'folder_colors':COLORS,
+        'folder':Folder.objects.get(pk=pk)
+    })
+
+
+def f_set_color (req, pk, color):
+    folder = Folder.objects.get(pk=pk)
+    prevcol = folder.color
+    folder.color = color
+    folder.save()
+    print(f'{folder.folder_name} color is now {color} instead of {prevcol}')
+    return folders(req)
 
 def f_del(req, pk):
     Folder.objects.filter(pk=pk).delete()

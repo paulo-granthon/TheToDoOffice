@@ -192,6 +192,8 @@ def t_move (req, pk, pk2=-1):
             return HttpResponse(status=404)
     task.folder = folder
     task.save()
+    # req.session['sel_tasks'].remove(pk)
+    req.session['sel_tasks'] = []       # TODO !!!! bandaid fix
     return render(req, 'todo/task_list.html', get_context(req, {}))
 
 
@@ -284,29 +286,24 @@ def t_sel_actions (req):
     return render(req, 'todo/sel_actions_none.html', {})
 
 def t_sel_all(req):
-    # from folders.views import f_reload
-    folder = Folder.objects.all().get(pk=req.session['current_folder'])
-
+    
     if 'sel_tasks' not in req.session:
-        print(f'req.session["sel_tasks"] had NO shit: empty')
         req.session.update({'sel_tasks': []})
         return HttpResponse(status=201)
         # return f_reload(req)
 
     if len(req.session['sel_tasks']) > 0:
-        print(f'req.session["sel_tasks"] already had shit: {req.session["sel_tasks"]}')
         req.session['sel_tasks'] = []
         return HttpResponse(status=201)
         # return f_reload(req)
 
     try:
-        tasks = Task.objects.filter(folder=folder)
+        tasks = Task.objects.filter(folder=Folder.objects.get(pk=req.session['current_folder']))
     except:
         tasks = Task.objects.filter(user=req.user)
 
     # print(f'tasks: {list(tasks)}')
     lst = [t.pk for t in list(tasks)]
-    print(f'lst: {lst}')
 
     req.session['sel_tasks'] = lst
 
