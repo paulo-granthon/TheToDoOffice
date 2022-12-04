@@ -613,3 +613,8 @@ body{
     top: 0;
     right: 0;
 }
+
+.swal2-popup {
+    background: var(--base-col-0);
+    color: var(--base-font-col)
+}

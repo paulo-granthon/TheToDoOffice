@@ -1,0 +1,16 @@
+{% if folder %}
+<div class="task-change-folder-li"
+        hx-get="{% url 'move' target_task.pk folder_pk %}"
+        hx-target="#content-area"
+        _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+>
+{% else %}
+<div class="task-change-folder-li"
+        hx-get="{% url 'move' target_task.pk %}"
+        hx-target="#content-area"
+        _="on htmx:afterRequest add .inactive to #modal-wrapper then log 'modal-wrapper inactive'"
+>
+{% endif %}
+    <div class="folder-color-icon" style="background: var(--folder-color-{{ folder.color }})"></div>
+    {{ folder_name }}
+</div>

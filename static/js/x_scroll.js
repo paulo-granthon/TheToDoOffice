@@ -13,5 +13,6 @@ function x_scroll_apply() {
             e.preventDefault();
         }
     });
+    // container.scrollTop(0)
     console.log("scroll added to element")
 }
