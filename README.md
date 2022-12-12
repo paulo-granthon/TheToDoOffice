@@ -33,7 +33,8 @@ ToDoOffice is a web based application made predominantly with Django and HTMX th
 ### ❌ Delete Folder:
 > On the *Folder List*, whenever you hover your mouse pointer over a Folder, the delete button will be revealed. *Click* it to show a pop-up with a confirmation to delete the Folder.  
 
-## 📱 Functionalities
+## 📱 Goals
+#### General
 > - [x] Light/Dark themes.  
 #### Authentication:
 > - [x] Register and login.  
