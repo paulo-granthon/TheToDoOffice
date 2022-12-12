@@ -39,9 +39,9 @@ ToDoOffice is a web based application made predominantly with Django and HTMX th
 #### Tasks:
 > - [x] Create and delete.
 > - [x] Check as completed.
-> - [ ] Move to/from Folder.
+> - [x] Move to/from Folder.
 
-> - [ ] Select one or more Task(s)
+> - [x] Select one or more Task(s)
 
 > - [ ] Reorder.
 > - [ ] Drag & Drop actions.  
