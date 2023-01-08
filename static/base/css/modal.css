@@ -74,8 +74,21 @@ hr {
 .task-change-folder-li {
     background: var(--base-col-1);
     cursor: pointer;
-    margin: .25em;
+    margin: 0.25em 0.125em 0.25em 0.25em;
+    padding: 0.125em 0.25em;
+
+    height: 1em;
+
     border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+}
+
+.task-change-folder-li > p {
+    margin: 0;
+    padding: 0;
+    padding-left: .25em;
 }
 
 .task-change-folder-li:hover {
