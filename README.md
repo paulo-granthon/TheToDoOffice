@@ -53,10 +53,7 @@ ToDoOffice is a web based application made predominantly with Django and HTMX th
 > - [ ] ~~Nested Folders.~~
 
 ## 📜 Technologies Used
-> - Django (Python)
-> - HTMX (+ HyperScript)
-> - JavaScript
-> - HTML & CSS
-##  
-#### Made by Paulo Granthon:
-[LinkedIn](https://www.linkedin.com/in/paulo-granthon/)
+- Django (Python)
+- HTMX (+ HyperScript)
+- JavaScript
+- HTML & CSS
